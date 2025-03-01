@@ -8,11 +8,19 @@ public class MenuUI : MonoBehaviour
 
     void Update()
     {
-        if (Touchscreen.current != null && Touchscreen.current.primaryTouch.press.wasPressedThisFrame) 
+        if (Touchscreen.current != null && Touchscreen.current.primaryTouch.press.wasPressedThisFrame)
         {
-            if (!isChangingScene && SceneManager.GetActiveScene().name == "Accueil")
+            Vector2 touchPosition = Touchscreen.current.primaryTouch.position.ReadValue();
+            Vector2 worldPosition = Camera.main.ScreenToWorldPoint(touchPosition);
+
+            RaycastHit2D hit = Physics2D.Raycast(worldPosition, Vector2.zero);
+            
+            if (hit.collider != null && hit.collider.gameObject == gameObject)
             {
-                ChangeScene();
+                if (!isChangingScene && SceneManager.GetActiveScene().name == "Accueil")
+                {
+                    ChangeScene();
+                }
             }
         }
     }
