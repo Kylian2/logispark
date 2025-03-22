@@ -750,53 +750,6 @@ RectTransform:
   m_AnchoredPosition: {x: -1072, y: 447}
   m_SizeDelta: {x: 100, y: 83}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1797014613
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1797014615}
-  - component: {fileID: 1797014614}
-  m_Layer: 0
-  m_Name: LevelManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1797014614
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1797014613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ccddf6ea96ed4a9d8c13d31c491b43f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelButton: {fileID: 1299746293300194435, guid: 0c998320f512d44d4a6af385bf3a1d71, type: 3}
-  buttonContainer: {fileID: 1637826007}
-  levelSelectorController: {fileID: 1704665774}
---- !u!4 &1797014615
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1797014613}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.4338826, y: 1.3250325, z: 105.422134}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1805034254
 GameObject:
   m_ObjectHideFlags: 0
@@ -891,7 +844,6 @@ SceneRoots:
   - {fileID: 971514326}
   - {fileID: 85426178}
   - {fileID: 692048360}
-  - {fileID: 1797014615}
   - {fileID: 1805034256}
   - {fileID: 1150388760}
   - {fileID: 1704665775}
