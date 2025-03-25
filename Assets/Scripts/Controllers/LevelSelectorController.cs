@@ -5,15 +5,16 @@ using UnityEngine.UI;
 
 public class LevelSelectorController : MonoBehaviour
 {
-    public Button homeButton;
-    void Start()
-    {
-        homeButton.onClick.AddListener(goMenu);
-    }
 
     void goMenu()
     {
         SceneManager.LoadScene("Menu");
+    }
+
+    public void setHomeButtonListener()
+    {
+        Button homeButton = GameObject.Find("Menu").GetComponent<Button>();
+        homeButton.onClick.AddListener(goMenu);
     }
 
     public void handleClick(int level){

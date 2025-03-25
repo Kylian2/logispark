@@ -15,12 +15,16 @@ public class UIManager : MonoBehaviour
     public Button levelButton;
     public Transform buttonContainer;
 
+    public LevelSelectorController levelSelectorController;
+
     void Awake(){
     
         if (instance == null)
         {
             instance = this;          
-            DontDestroyOnLoad(this);         
+            DontDestroyOnLoad(this);     
+
+            levelSelectorController = gameObject.AddComponent<LevelSelectorController>();
         }
         else
         {
@@ -38,7 +42,6 @@ public class UIManager : MonoBehaviour
         for(int i = 0; i < GameManager.NB_LEVELS; i++)
         {
             Button button = Instantiate(levelButton, buttonContainer);
-            LevelSelectorController levelSelectorController = FindObjectOfType<LevelSelectorController>();
             button.onClick.AddListener(delegate { levelSelectorController.handleClick(i+1); });
             if(GameManager.instance.levelIsLocked(i+1))
             {
@@ -48,5 +51,7 @@ public class UIManager : MonoBehaviour
                 button.GetComponent<Image>().sprite = Resources.Load<Sprite>("Graphics/Buttons/Level" + (i+1)+"/unlocked");
             }
         }
+
+        levelSelectorController.setHomeButtonListener();
     }
 }
