@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
     public Transform buttonContainer;
 
     public LevelSelectorController levelSelectorController;
+    public MainMenuController mainMenuController;
 
     void Awake(){
     
@@ -25,6 +26,7 @@ public class UIManager : MonoBehaviour
             DontDestroyOnLoad(this);     
 
             levelSelectorController = gameObject.AddComponent<LevelSelectorController>();
+            mainMenuController = gameObject.AddComponent<MainMenuController>();
         }
         else
         {
