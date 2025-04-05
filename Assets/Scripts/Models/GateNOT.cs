@@ -1,7 +1,7 @@
 using System;
 using LogiSpark.Models;
 
-namespace Models
+namespace LogiSpark.Models
 {
     public class GateNOT : LogicGate
     {
