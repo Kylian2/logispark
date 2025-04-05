@@ -9,8 +9,9 @@ public class GameManager : MonoBehaviour
 
     public const int NB_LEVELS = 10;
 
-    private Level currentLevel;
     private List<Level> levels;
+
+    private Level currentLevel;
 
     void Awake()
     {
@@ -36,7 +37,10 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < NB_LEVELS; i++)
         {
-            levels.Add(new Level(i+1));
+            Level level = new Level(i+1);
+            level.SetNot(1);
+            level.SetAnd(1);
+            levels.Add(level);
             if (i == 0)
             {
                 levels[i].Unlock();
@@ -45,7 +49,6 @@ public class GameManager : MonoBehaviour
                 levels[i].Lock();
             }
         }
-        currentLevel = levels[0];
     }
 
     public bool levelIsLocked(int level)
@@ -58,5 +61,21 @@ public class GameManager : MonoBehaviour
             }
         }
         return false;
+    }
+
+    public Level getCurrentLevel()
+    {
+        return currentLevel;
+    }
+    public void setActiveLevel(int level)
+    {
+        for (int i = 0; i < NB_LEVELS; i++)
+        {
+            if (levels[i].getNumber() == level)
+            {
+                currentLevel = levels[i];
+                return;
+            }
+        }
     }
 }

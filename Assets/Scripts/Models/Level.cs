@@ -75,13 +75,33 @@ public class Level
         return nand;
     }
 
-    public int GetNor()
-    {
-        return nor;
-    }
-
     public int GetWire()
     {
         return wire;
+    }
+
+    public void SetOr(int or)
+    {
+        this.or = or;
+    }
+    public void SetXor(int xor)
+    {
+        this.xor = xor;
+    }
+    public void SetAnd(int and)
+    {
+        this.and = and;
+    }
+    public void SetNot(int not)
+    {
+        this.not = not;
+    }
+    public void SetNand(int nand)
+    {
+        this.nand = nand;
+    }
+    public void SetWire(int wire)
+    {
+        this.wire = wire;
     }
 }

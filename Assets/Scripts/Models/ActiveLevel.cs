@@ -14,6 +14,13 @@ public class ActiveLevel
     private List<GateNAND> nand;
     private List<Wire> wire;
 
+
+    public ActiveLevel(Level level)
+    {
+        this.level = level;
+        instanciateGates();
+    }
+
     public void instanciateGates()
     {
         not = new List<GateNOT>();
@@ -47,6 +54,11 @@ public class ActiveLevel
         {
             wire.Add(new Wire());
         }
+    }
+
+    public Level GetLevel()
+    {
+        return level;
     }
 
 }
