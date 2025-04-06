@@ -76,4 +76,9 @@ public class ActiveLevel
         return scoringSystem.GetInGameScore();
     }
 
+    public ScoringSystem GetScoringSystem()
+    {
+        return scoringSystem;
+    }
+
 }

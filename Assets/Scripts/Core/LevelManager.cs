@@ -1,6 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
@@ -12,6 +13,12 @@ public class LevelManager : MonoBehaviour
     public TMPro.TextMeshProUGUI scoreDisplay;
 
     public GameObject gridElementPrefab; // Prefab pour les éléments de la grille
+
+    public Button pauseButton;
+    public Button restartButton;
+    public Button leaveButton;
+
+    public GameObject modalePause;
 
 
     void Start()
@@ -46,8 +53,11 @@ public class LevelManager : MonoBehaviour
         {
             AddGateToInventory("gate_xor", activeLevel.GetLevel().GetAnd());
         }
-
+        modalePause.SetActive(false);
         activeLevel.StartScore();
+        pauseButton.onClick.AddListener(PauseGame);
+        restartButton.onClick.AddListener(ResumeGame);
+        leaveButton.onClick.AddListener(LeaveGame);
     }
 
     void Update()
@@ -99,5 +109,36 @@ public class LevelManager : MonoBehaviour
         {
             Debug.LogError("Quantity text not found in prefab.");
         }
+    }
+
+    public void PauseGame()
+    {
+        modalePause.SetActive(true);
+        activeLevel.GetScoringSystem().Pause();
+
+    }
+
+    public void ResumeGame()
+    {
+        modalePause.SetActive(false);
+        activeLevel.GetScoringSystem().Resume();
+    }
+
+    public async void LeaveGame()
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("LevelSelect");
+        
+        // Empêcher la transition automatique vers la nouvelle scène lorsqu'elle est prête
+        asyncLoad.allowSceneActivation = true;
+        
+        // Attendre que la scène soit complètement chargée
+        while (!asyncLoad.isDone)
+        {   
+            // Attendre le prochain frame
+            await System.Threading.Tasks.Task.Yield();
+        }
+        
+        // Maintenant que la scène est chargée, afficher les niveaux
+        UIManager.instance.displayLevels();
     }
 }

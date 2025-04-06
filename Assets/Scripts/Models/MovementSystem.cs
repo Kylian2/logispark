@@ -51,5 +51,16 @@ namespace LogiSpark.Models
         {
             return moveCount;
         }
+
+
+        public override void Pause()
+        {
+            isCounting = false;
+        }
+
+        public override void Resume()
+        {
+            isCounting = true;
+        }
     }
 }
