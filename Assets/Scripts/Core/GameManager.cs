@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance; // Instance unique de GameManager
 
-    public const int NB_LEVELS = 10;
+    public const int NB_LEVELS = 3;
 
     private List<Level> levels;
 
@@ -35,20 +35,27 @@ public class GameManager : MonoBehaviour
         //ce code d'initialisation est temporaire
         levels = new List<Level>();
 
-        for (int i = 0; i < NB_LEVELS; i++)
-        {
-            Level level = new Level(i+1);
-            level.SetNot(1);
-            level.SetAnd(1);
-            levels.Add(level);
-            if (i == 0)
-            {
-                levels[i].Unlock();
-            }else
-            {
-                levels[i].Lock();
-            }
-        }
+        Level level1 = new(1);
+        level1.Unlock();
+        level1.SetAnd(1);
+        level1.SetOr(1);
+        level1.SetNot(2);
+        levels.Add(level1);
+
+        Level level2 = new(2);
+        level2.Lock();
+        level2.SetAnd(2);
+        level2.SetOr(2);
+        level2.SetNot(3);
+        levels.Add(level2);
+
+        Level level3 = new(3);
+        level3.Lock();
+        level3.SetOr(1);
+        level3.SetNot(1);
+        level3.SetNand(2);
+        levels.Add(level3);
+
     }
 
     public bool levelIsLocked(int level)
@@ -77,5 +84,6 @@ public class GameManager : MonoBehaviour
                 return;
             }
         }
+        Debug.LogError("Level " + level + " not found");
     }
 }

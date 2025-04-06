@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 public class ActiveLevel
 {
 
-    private Level level;
+    private readonly Level level;
 
     private List<GateNOT> not;
     private List<GateAND> and;
@@ -18,10 +18,9 @@ public class ActiveLevel
     public ActiveLevel(Level level)
     {
         this.level = level;
-        instanciateGates();
     }
 
-    public void instanciateGates()
+    public void InstanciateGates()
     {
         not = new List<GateNOT>();
         and = new List<GateAND>();

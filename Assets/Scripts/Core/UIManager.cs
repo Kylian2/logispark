@@ -34,23 +34,27 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void displayLevels(){
+    public void displayLevels() {
         Debug.Log(SceneManager.GetActiveScene().name);
-        if(SceneManager.GetActiveScene().name != "LevelSelect"){
+        if(SceneManager.GetActiveScene().name != "LevelSelect") {
             return;
         }
         Debug.Log("Display levels");
         buttonContainer = FindObjectOfType<GridLayoutGroup>().transform;
-        for(int i = 0; i < GameManager.NB_LEVELS; i++)
-        {
+        for(int i = 0; i < GameManager.NB_LEVELS; i++) {
             Button button = Instantiate(levelButton, buttonContainer);
-            button.onClick.AddListener(delegate { levelSelectorController.handleClick(i+1); });
-            if(GameManager.instance.levelIsLocked(i+1))
-            {
+            
+            // Créer une copie locale de i qui sera capturée par valeur
+            int levelIndex = i + 1;
+            
+            // Utiliser cette copie locale dans le délégué
+            button.onClick.AddListener(delegate { levelSelectorController.handleClick(levelIndex); });
+            
+            if(GameManager.instance.levelIsLocked(levelIndex)) {
                 button.interactable = false;
-                button.GetComponent<Image>().sprite = Resources.Load<Sprite>("Graphics/Buttons/Level" + (i+1)+"/locked");
-            }else{
-                button.GetComponent<Image>().sprite = Resources.Load<Sprite>("Graphics/Buttons/Level" + (i+1)+"/unlocked");
+                button.GetComponent<Image>().sprite = Resources.Load<Sprite>("Graphics/Buttons/Level" + levelIndex + "/locked");
+            } else {
+                button.GetComponent<Image>().sprite = Resources.Load<Sprite>("Graphics/Buttons/Level" + levelIndex + "/unlocked");
             }
         }
 

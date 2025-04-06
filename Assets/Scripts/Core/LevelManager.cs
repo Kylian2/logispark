@@ -14,10 +14,9 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
-        //Temporary code to test the level manager
-        GameManager.instance.setActiveLevel(1);
         Level level = GameManager.instance.getCurrentLevel();
         activeLevel = new ActiveLevel(level);
+        activeLevel.InstanciateGates();
         
         // Ajouter les portes NOT si disponibles
         if(activeLevel.GetLevel().GetNot() > 0)
