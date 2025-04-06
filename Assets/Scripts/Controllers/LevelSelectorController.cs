@@ -19,7 +19,8 @@ public class LevelSelectorController : MonoBehaviour
 
     public void handleClick(int level){
         if(!GameManager.instance.levelIsLocked(level)){
-            Debug.Log("Move to level " + level);
+            GameManager.instance.setActiveLevel(level);
+            SceneManager.LoadScene("TestInventory");
         }else{
             Debug.Log("Level " + level + " is locked");
         }

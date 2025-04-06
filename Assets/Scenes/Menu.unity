@@ -234,7 +234,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 3980168229369012863, guid: 4af5c1c111b1e4c9c8e994e0245fa83c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4af5c1c111b1e4c9c8e994e0245fa83c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -587,6 +587,7 @@ MonoBehaviour:
   levelButton: {fileID: 1299746293300194435, guid: 0c998320f512d44d4a6af385bf3a1d71, type: 3}
   buttonContainer: {fileID: 1530527678}
   levelSelectorController: {fileID: 0}
+  mainMenuController: {fileID: 0}
 --- !u!4 &728957279
 Transform:
   m_ObjectHideFlags: 0
