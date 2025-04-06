@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 590151fd33b03604e88e81eb8fd57ada
+guid: 19231b19b1b81ff4c8f4f9663ca2ea6b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7241560298280312543
-    second: nextLevel_0
+      213: -4123761049389980632
+    second: ShadowStar_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: nextLevel_0
+      name: ShadowStar_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 444
-        height: 109
+        width: 284
+        height: 294
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fded19e49b03f7460800000000000000
-      internalID: 7241560298280312543
+      spriteID: 824a4889c2575c6c0800000000000000
+      internalID: -4123761049389980632
       vertices: []
       indices: 
       edges: []
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      nextLevel_0: 7241560298280312543
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
