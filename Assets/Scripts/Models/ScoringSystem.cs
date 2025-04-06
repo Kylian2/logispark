@@ -15,5 +15,6 @@ namespace LogiSpark.Models
 
         // Method to stop the scoring system
         public abstract void Stop();
+        public abstract int GetInGameScore();
     }
 }

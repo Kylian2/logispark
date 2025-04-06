@@ -7,8 +7,6 @@ namespace LogiSpark.Models
         private DateTime? startTime;
         private TimeSpan elapsedTime;
 
-        public TimeSpan ElapsedTime => elapsedTime;
-
         public override int ComputeScore()
         {
             throw new NotImplementedException();
@@ -31,9 +29,15 @@ namespace LogiSpark.Models
         {
             if (startTime != null)
             {
-                elapsedTime += DateTime.Now - startTime.Value;
+                elapsedTime = DateTime.Now.Subtract(startTime ?? DateTime.Now);
                 startTime = null;
             }
+        }
+
+        public override int GetInGameScore()
+        {
+            elapsedTime = DateTime.Now.Subtract(startTime ?? DateTime.Now);
+            return (int)elapsedTime.TotalSeconds;
         }
     }
 }

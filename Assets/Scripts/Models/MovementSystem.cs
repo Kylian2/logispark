@@ -46,5 +46,10 @@ namespace LogiSpark.Models
         {
             throw new System.NotImplementedException();
         }
+
+        public override int GetInGameScore()
+        {
+            return moveCount;
+        }
     }
 }

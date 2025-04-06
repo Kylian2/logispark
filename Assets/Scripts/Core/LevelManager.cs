@@ -9,6 +9,8 @@ public class LevelManager : MonoBehaviour
     public ActiveLevel activeLevel;
     public Transform inventory;
 
+    public TMPro.TextMeshProUGUI scoreDisplay;
+
     public GameObject gridElementPrefab; // Prefab pour les éléments de la grille
 
 
@@ -43,6 +45,22 @@ public class LevelManager : MonoBehaviour
         if(activeLevel.GetLevel().GetXor() > 0)
         {
             AddGateToInventory("gate_xor", activeLevel.GetLevel().GetAnd());
+        }
+
+        activeLevel.StartScore();
+    }
+
+    void Update()
+    {
+        // Mettre à jour l'affichage du score
+        if (scoreDisplay != null)
+        {
+            Debug.Log(activeLevel.GetInGameScore().ToString());
+            scoreDisplay.text = activeLevel.GetInGameScore().ToString();
+        }
+        else
+        {
+            Debug.LogError("Score display not found.");
         }
     }
 

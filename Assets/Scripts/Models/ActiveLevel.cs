@@ -7,6 +7,8 @@ public class ActiveLevel
 
     private readonly Level level;
 
+    private ScoringSystem scoringSystem;
+
     private List<GateNOT> not;
     private List<GateAND> and;
     private List<GateOR> or;
@@ -18,6 +20,7 @@ public class ActiveLevel
     public ActiveLevel(Level level)
     {
         this.level = level;
+        scoringSystem = new TimingSystem();
     }
 
     public void InstanciateGates()
@@ -58,6 +61,19 @@ public class ActiveLevel
     public Level GetLevel()
     {
         return level;
+    }
+
+    public void StartScore()
+    {
+        scoringSystem.Start();
+    }
+    public void StopScore()
+    {
+        scoringSystem.Stop();
+    }
+    public int GetInGameScore()
+    {
+        return scoringSystem.GetInGameScore();
     }
 
 }
