@@ -17,6 +17,7 @@ public class LevelManager : MonoBehaviour
     public Button pauseButton;
     public Button restartButton;
     public Button leaveButton;
+    public Button launchButton;
 
     public GameObject modalePause;
 
@@ -115,6 +116,7 @@ public class LevelManager : MonoBehaviour
     {
         modalePause.SetActive(true);
         activeLevel.GetScoringSystem().Pause();
+        launchButton.interactable = false;
 
     }
 
@@ -122,6 +124,7 @@ public class LevelManager : MonoBehaviour
     {
         modalePause.SetActive(false);
         activeLevel.GetScoringSystem().Resume();
+        launchButton.interactable = true;
     }
 
     public async void LeaveGame()
