@@ -946,21 +946,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundModal
       objectReference: {fileID: 0}
+    - target: {fileID: 2896593690221071731, guid: 34eb2aed6ae9cbb4ba0b713fd5b25c92, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4537824770962549669, guid: 34eb2aed6ae9cbb4ba0b713fd5b25c92, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7073406365786148767, guid: 34eb2aed6ae9cbb4ba0b713fd5b25c92, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7178373024324414074, guid: 34eb2aed6ae9cbb4ba0b713fd5b25c92, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9091197926699871865, guid: 34eb2aed6ae9cbb4ba0b713fd5b25c92, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
