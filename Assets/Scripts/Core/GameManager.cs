@@ -1,4 +1,7 @@
+using System;
 using System.Collections.Generic;
+using System.Text;
+using LogiSpark.Models;
 using Unity.Android.Gradle;
 using UnityEngine;
 
@@ -40,6 +43,25 @@ public class GameManager : MonoBehaviour
         level1.SetAnd(1);
         level1.SetOr(1);
         level1.SetNot(2);
+
+        Tree<LogicGate> source1 = new Tree<LogicGate>(new Source());
+        Tree<LogicGate> source2 = new Tree<LogicGate>(new Source());
+        
+        Tree<LogicGate> spot1 = new Tree<LogicGate>(new GateNOT());
+        spot1.AddChildren(source1);
+        
+        Tree<LogicGate> spot2 = new Tree<LogicGate>(new GateNOT());
+        spot2.AddChildren(source2);
+    
+        Tree<LogicGate> spot3 = new Tree<LogicGate>(null);
+        spot3.AddChildren(spot2);
+
+        Tree<LogicGate> spot4 = new Tree<LogicGate>(null);
+        spot4.AddChildren(spot1);
+        spot4.AddChildren(spot3);
+        
+        Tree<LogicGate> destination = new Tree<LogicGate>(new Wire());
+        destination.AddChildren(spot4);
         levels.Add(level1);
 
         Level level2 = new(2);
