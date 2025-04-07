@@ -1,14 +1,20 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
 
+    [Header("Sources")]
     public AudioSource musicSource;
     public AudioSource sfxSource;
 
-    public AudioClip buttonClickClip; // Son de clic des boutons
-    public AudioClip[] sfxClips; // Tableau de SFX pour autres actions
+    [Header("Musiques")]
+    public AudioClip[] musicClips; 
+
+    [Header("Effets Sonores")]
+    public AudioClip buttonClickClip;
+    public AudioClip[] sfxClips;
 
     void Awake()
     {
@@ -31,29 +37,67 @@ public class AudioManager : MonoBehaviour
         musicSource.volume = musicVol;
         sfxSource.volume = sfxVol;
 
-        if (!musicSource.isPlaying && musicSource.clip != null)
-            musicSource.Play();
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        PlaySceneMusic(SceneManager.GetActiveScene().name); 
     }
 
-    public void SetMusicVolume(float volume) => musicSource.volume = volume;
-    public void SetSFXVolume(float volume) => sfxSource.volume = volume;
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        PlaySceneMusic(scene.name);
+    }
+
+    public void SetMusicVolume(float volume)
+    {
+        musicSource.volume = volume;
+        PlayerPrefs.SetFloat("MusicVolume", volume);
+    }
+
+    public void SetSFXVolume(float volume)
+    {
+        sfxSource.volume = volume;
+        PlayerPrefs.SetFloat("SFXVolume", volume);
+    }
 
     public float GetMusicVolume() => musicSource.volume;
     public float GetSFXVolume() => sfxSource.volume;
 
-    // Fonction pour jouer un son de bouton spécifique
     public void PlayButtonClick()
     {
         if (buttonClickClip != null)
             sfxSource.PlayOneShot(buttonClickClip);
     }
 
-    // Fonction pour jouer n'importe quel autre effet sonore
     public void PlaySFX(int index)
     {
         if (index >= 0 && index < sfxClips.Length)
-        {
             sfxSource.PlayOneShot(sfxClips[index]);
+    }
+
+    private void PlaySceneMusic(string sceneName)
+    {
+        switch (sceneName)
+        {
+            case "Menu":
+                PlayMusicByIndex(0);
+                break;
+            case "LevelSelect":
+                PlayMusicByIndex(1);
+                break;
+            default:
+                PlayMusicByIndex(0);
+                break;
+        }
+    }
+
+    private void PlayMusicByIndex(int index)
+    {
+        if (index >= 0 && index < musicClips.Length)
+        {
+            if (musicSource.clip != musicClips[index])
+            {
+                musicSource.clip = musicClips[index];
+                musicSource.Play();
+            }
         }
     }
 }

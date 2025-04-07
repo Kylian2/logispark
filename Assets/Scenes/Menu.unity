@@ -773,7 +773,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 5f61c805185348546acae59f93bea153, type: 3}
+  m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 5f61c805185348546acae59f93bea153, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -874,8 +874,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 1062518521}
   sfxSource: {fileID: 1062518520}
+  musicClips:
+  - {fileID: 8300000, guid: e7f30d743fc1fbd41a06f56412322fe7, type: 3}
+  - {fileID: 8300000, guid: f4c46430616ca5f48a3cf432e3264d5b, type: 3}
+  - {fileID: 8300000, guid: aba17495dae1bd445934844a70281ec2, type: 3}
+  - {fileID: 8300000, guid: 247986ca1abc263448e6ef59b4f0d6ea, type: 3}
   buttonClickClip: {fileID: 8300000, guid: 3480ba4544276cc4085e58af120727ec, type: 3}
-  sfxClips: []
+  sfxClips:
+  - {fileID: 8300000, guid: 09a11978851e4bf4ba219b77e08aaec2, type: 3}
+  - {fileID: 8300000, guid: 473e02fa13a5f064fa1510e33ac636ae, type: 3}
 --- !u!4 &1062518523
 Transform:
   m_ObjectHideFlags: 0
