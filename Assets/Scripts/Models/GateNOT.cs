@@ -12,7 +12,7 @@ namespace LogiSpark.Models
             {
                 throw new ArgumentNullException(nameof(input1), "Input1 cannot be null for a NOT gate.");
             }
-
+            output = !input1.Value;
             return !input1.Value;
         }
     }

@@ -1,6 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using LogiSpark.Models;
+using UnityEditor.SearchService;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Tree<T>
 {
@@ -75,8 +80,19 @@ public class Tree<T>
     private void Print(StringBuilder buffer, string prefix, string childrenPrefix)
     {
         buffer.Append(prefix);
-        buffer.Append(this.Data());
+        
+        // Vérifier si Data() est null et afficher "vide" dans ce cas
+        if (this.Data() == null)
+        {
+            buffer.Append("vide");
+        }
+        else
+        {
+            buffer.Append(this.Data());
+        }
+        
         buffer.Append('\n');
+        
         for (int i = 0; i < NbChildren(); i++)
         {
             Tree<T> next = this.Child(i);
@@ -100,7 +116,7 @@ public class Tree<T>
 
     public void Display()
     {
-        Console.WriteLine(this.ToString());
+        Debug.Log(this.ToString());
     }
 
     // (*) Depth of a tree
@@ -149,5 +165,34 @@ public class Tree<T>
         }
         
         return max;
+    }
+
+    public void SetData(T data)
+    {
+        this.data = data;
+    }
+
+    public bool EvaluateCircuit()
+    {
+        if(this.Data() is LogicGate gate)
+        {
+            if (this.NbChildren() == 0)
+            {
+                if(gate.GetOutput() == null)
+                {
+                    throw new InvalidOperationException("Output of the gate without child is null");
+                }
+                return gate.GetOutput().Value;
+            }
+            else if (this.NbChildren() == 1)
+            {
+                return gate.Evaluate(this.Child(0).EvaluateCircuit(), null);
+            }
+            else if (this.NbChildren() == 2)
+            {
+                return gate.Evaluate(this.Child(0).EvaluateCircuit(), this.Child(1).EvaluateCircuit());
+            }
+        }
+        throw new InvalidOperationException("Invalid type of data, data must be a LogicGate");
     }
 }

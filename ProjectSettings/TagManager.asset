@@ -38,6 +38,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Decor
+    uniqueID: 3128626235
+    locked: 0
   - name: Background
     uniqueID: 4265025873
     locked: 0
@@ -46,6 +49,9 @@ TagManager:
     locked: 0
   - name: Top
     uniqueID: 307032735
+    locked: 0
+  - name: Modal
+    uniqueID: 1743442709
     locked: 0
   - name: FirstToSee
     uniqueID: 1815287163
