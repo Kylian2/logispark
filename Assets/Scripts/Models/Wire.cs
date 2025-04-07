@@ -7,7 +7,12 @@ namespace LogiSpark.Models
     {
         public override bool Evaluate(bool? input1, bool? input2)
         {
-            return input1.GetValueOrDefault();
+            if(input1 == null)
+            {
+                throw new ArgumentNullException("Signal value cannot be null");
+            }
+            output = input1.GetValueOrDefault();
+            return output;
         }
     }
 }

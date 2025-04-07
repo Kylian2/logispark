@@ -4,9 +4,14 @@ namespace LogiSpark.Models
 {
     public class GateAND : LogicGate
     {
-        public override bool Evaluate(bool? signal1, bool? signal2)
+        public override bool Evaluate(bool? input1, bool? input2)
         {
-            return signal1.GetValueOrDefault() && signal2.GetValueOrDefault();
+            if(input1 == null || input2 == null)
+            {
+                throw new ArgumentNullException("Signal values cannot be null");
+            }
+            output = input1.GetValueOrDefault() && input2.GetValueOrDefault();
+            return output;
         }
     }
 }
