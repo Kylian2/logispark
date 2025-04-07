@@ -1,4 +1,6 @@
+using System;
 using Unity.VisualScripting;
+using UnityEditor.EditorTools;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.SceneManagement;
@@ -20,6 +22,9 @@ public class LevelManager : MonoBehaviour
     public Button launchButton;
 
     public GameObject modalePause;
+
+    public GameObject modaleVictory;
+    public GameObject modaleDefeat;
 
 
     void Start()
@@ -55,10 +60,13 @@ public class LevelManager : MonoBehaviour
             AddGateToInventory("gate_xor", activeLevel.GetLevel().GetAnd());
         }
         modalePause.SetActive(false);
+        modaleVictory.SetActive(false);
+        modaleDefeat.SetActive(false);
         activeLevel.StartScore();
         pauseButton.onClick.AddListener(PauseGame);
         restartButton.onClick.AddListener(ResumeGame);
         leaveButton.onClick.AddListener(LeaveGame);
+        launchButton.onClick.AddListener(LaunchGame);
     }
 
     void Update()
@@ -66,7 +74,6 @@ public class LevelManager : MonoBehaviour
         // Mettre à jour l'affichage du score
         if (scoreDisplay != null)
         {
-            Debug.Log(activeLevel.GetInGameScore().ToString());
             scoreDisplay.text = activeLevel.GetInGameScore().ToString();
         }
         else
@@ -143,5 +150,20 @@ public class LevelManager : MonoBehaviour
         
         // Maintenant que la scène est chargée, afficher les niveaux
         UIManager.instance.displayLevels();
+    }
+
+    public void LaunchGame()
+    {
+        Debug.Log(activeLevel.GetCircuit().ToString());
+        //bool evaluation = activeLevel.Evaluate();
+        //Debug.Log(evaluation);
+        bool evaluation = true;
+        if(evaluation){
+            Debug.Log("Victoire");
+            modaleVictory.SetActive(true);
+        }else{
+            Debug.Log("Défaite");
+            modaleDefeat.SetActive(true);
+        }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using LogiSpark.Models;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 
@@ -23,6 +24,8 @@ public class Level
     private int nand;
     private int nor;
     private int wire;
+
+    public Func<Tree<LogicGate>> treemaker; 
 
 
     public Level(int num)

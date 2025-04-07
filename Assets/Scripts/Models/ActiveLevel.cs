@@ -16,11 +16,14 @@ public class ActiveLevel
     private List<GateNAND> nand;
     private List<Wire> wire;
 
+    private Tree<LogicGate> circuit;
+
 
     public ActiveLevel(Level level)
     {
         this.level = level;
         scoringSystem = new TimingSystem();
+        circuit = level.treemaker();
     }
 
     public void InstanciateGates()
@@ -79,6 +82,16 @@ public class ActiveLevel
     public ScoringSystem GetScoringSystem()
     {
         return scoringSystem;
+    }
+
+    public bool Evaluate()
+    {
+        return circuit.EvaluateCircuit();
+    }
+
+    public Tree<LogicGate> GetCircuit()
+    {
+        return circuit;
     }
 
 }

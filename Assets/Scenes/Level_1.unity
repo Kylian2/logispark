@@ -263,6 +263,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: InventoryBarSkin
       objectReference: {fileID: 0}
+    - target: {fileID: 5062805207545504122, guid: 10b7c86da7d4eff4c9f320175224ff33, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6124059286807513133, guid: 10b7c86da7d4eff4c9f320175224ff33, type: 3}
       propertyPath: m_SortingLayer
       value: -1
@@ -919,6 +923,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EventSystem
       objectReference: {fileID: 0}
+    - target: {fileID: 722033795687534959, guid: a06982168c8aa7f4c848269b33fdd9a3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6978435859092528534, guid: a06982168c8aa7f4c848269b33fdd9a3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1249,6 +1257,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 5023945743686970750, guid: bfb15f94742c3b34ead3d2c7a03ae723, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6133574485286655987, guid: bfb15f94742c3b34ead3d2c7a03ae723, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 0
@@ -1383,6 +1395,10 @@ PrefabInstance:
     - target: {fileID: 2431725325081160403, guid: e01ff0b6e7199c1438205cf1621fa1eb, type: 3}
       propertyPath: m_Name
       value: Pause
+      objectReference: {fileID: 0}
+    - target: {fileID: 2431725325081160403, guid: e01ff0b6e7199c1438205cf1621fa1eb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5400251031660486960, guid: e01ff0b6e7199c1438205cf1621fa1eb, type: 3}
       propertyPath: m_SortingLayer
@@ -1548,6 +1564,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: clock
       objectReference: {fileID: 0}
+    - target: {fileID: 4697176301003544989, guid: ec0e2165f2a453e4c9d499cee8ef4abb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8197509595281811423, guid: ec0e2165f2a453e4c9d499cee8ef4abb, type: 3}
       propertyPath: m_SortingLayer
       value: -1
@@ -1590,9 +1610,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1038087922}
     - target: {fileID: 1184026498080398759, guid: 6949b2182183bb048b89ac2ab88068c0, type: 3}
+      propertyPath: modaleDefeat
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1184026498080398759, guid: 6949b2182183bb048b89ac2ab88068c0, type: 3}
       propertyPath: scoreDisplay
       value: 
       objectReference: {fileID: 1038087925}
+    - target: {fileID: 1184026498080398759, guid: 6949b2182183bb048b89ac2ab88068c0, type: 3}
+      propertyPath: modaleVictory
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1184026498080398759, guid: 6949b2182183bb048b89ac2ab88068c0, type: 3}
       propertyPath: restartButton
       value: 
@@ -1640,6 +1668,10 @@ PrefabInstance:
     - target: {fileID: 7914913384826248644, guid: 6949b2182183bb048b89ac2ab88068c0, type: 3}
       propertyPath: m_Name
       value: LevelManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7914913384826248644, guid: 6949b2182183bb048b89ac2ab88068c0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

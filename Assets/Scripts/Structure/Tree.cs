@@ -195,4 +195,22 @@ public class Tree<T>
         }
         throw new InvalidOperationException("Invalid type of data, data must be a LogicGate");
     }
+
+    public Tree<T> DeepClone(Func<T, T> dataCloner)
+{
+    // Cloner la donnée elle-même en utilisant la fonction fournie
+    // Si la donnée est null, on garde null
+    T clonedData = this.Data() != null ? dataCloner(this.Data()) : default(T);
+    
+    Tree<T> clone = new Tree<T>(clonedData);
+    
+    // Cloner récursivement tous les enfants
+    for (int i = 0; i < this.NbChildren(); i++)
+    {
+        Tree<T> childClone = this.Child(i).DeepClone(dataCloner);
+        clone.AddChildren(childClone);
+    }
+    
+    return clone;
+}
 }
