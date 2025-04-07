@@ -83,6 +83,21 @@ public class AudioManager : MonoBehaviour
             case "LevelSelect":
                 PlayMusicByIndex(1);
                 break;
+            case "Level_1":
+                PlayMusicByIndex(2);
+                break;
+            case "Level_2":
+                PlayMusicByIndex(3);
+                break;
+            case "Level_3":
+                PlayMusicByIndex(4);
+                break;
+            case "Level_4":
+                PlayMusicByIndex(5);
+                break;
+            case "Level_5":
+                PlayMusicByIndex(6);
+                break;
             default:
                 PlayMusicByIndex(0);
                 break;
