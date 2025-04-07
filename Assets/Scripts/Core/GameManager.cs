@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
         levels.Add(level1);
 
         Level level2 = new(2);
-        level2.Lock();
+        level2.Unlock();
         level2.SetAnd(2);
         level2.SetOr(2);
         level2.SetNot(3);
@@ -129,7 +129,7 @@ public class GameManager : MonoBehaviour
 
 
         Level level3 = new(3);
-        level3.Lock();
+        level3.Unlock();
         level3.SetOr(1);
         level3.SetNot(1);
         level3.SetNand(2);
