@@ -3,8 +3,8 @@ guid: 40187a1e7cca7ca46a339e5d4e33213b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 434812970131706356
-    second: back_XOR_0
+      213: -5644590111391317943
+    second: Back_XOR_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: back_XOR_0
+      name: Back_XOR_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4f1de64b714c80600800000000000000
-      internalID: 434812970131706356
+      spriteID: 94086d333336aa1b0800000000000000
+      internalID: -5644590111391317943
       vertices: []
       indices: 
       edges: []
