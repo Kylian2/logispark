@@ -249,4 +249,16 @@ public class GameManager : MonoBehaviour
         }
         Debug.LogError("Level " + level + " not found");
     }
+
+    public void RegisterScore(int level, double score){
+        for (int i = 0; i < NB_LEVELS; i++)
+        {
+            if (levels[i].getNumber() == level)
+            {
+                levels[i].SetScore(score);
+                return;
+            }
+        }
+        Debug.LogError("Level " + level + " not found");
+    }
 }

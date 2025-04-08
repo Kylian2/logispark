@@ -94,4 +94,8 @@ public class ActiveLevel
         return circuit;
     }
 
+    public int GetNbDoors(){
+        return level.GetNbDoors();
+    }
+
 }

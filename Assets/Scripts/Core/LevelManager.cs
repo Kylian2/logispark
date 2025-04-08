@@ -77,7 +77,7 @@ public class LevelManager : MonoBehaviour
         pauseButton.onClick.AddListener(PauseGame);
         restartButton.onClick.AddListener(ResumeGame);
         leaveButton.onClick.AddListener(LeaveGame);
-        launchButton.onClick.AddListener(LaunchGame);
+        launchButton.onClick.AddListener(LaunchVerif);
         nextLevelButton.onClick.AddListener(nextLevel);
         homeButton.onClick.AddListener(LeaveGame);
         HomeButton2.onClick.AddListener(LeaveGame);
@@ -167,13 +167,13 @@ public class LevelManager : MonoBehaviour
         UIManager.instance.displayLevels();
     }
 
-    public void LaunchGame()
+    public void LaunchVerif()
     {
         Debug.Log(activeLevel.GetCircuit().ToString());
         activeLevel.GetScoringSystem().Stop();
         //bool evaluation = activeLevel.Evaluate();
         //Debug.Log(evaluation);
-        double score = 60;
+        double score = activeLevel.GetScoringSystem().ComputeScore(activeLevel.GetNbDoors());
         bool evaluation = true;
         if(evaluation){
             Sprite activeState = Resources.Load<Sprite>("Graphics/Modal/Win/LightStar");
@@ -194,7 +194,7 @@ public class LevelManager : MonoBehaviour
             winStart3.GetComponent<Image>().sprite = inactiveState;
 
             // Activer les étoiles en fonction du score
-            if (score > 0){
+            if (score >= 0){
                 winStart1.GetComponent<Image>().sprite = activeState; // 1ère étoile active si score > 0
                 if (score > 50)
                 {
@@ -206,6 +206,7 @@ public class LevelManager : MonoBehaviour
                 }
             }
             modaleVictory.SetActive(true);
+            GameManager.instance.RegisterScore(activeLevel.GetLevel().getNumber() + 1, score);
             GameManager.instance.UnlockLevel(activeLevel.GetLevel().getNumber() + 1);
         }else{
             Debug.Log("Défaite");

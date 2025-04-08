@@ -37,7 +37,7 @@ namespace LogiSpark.Models
             return moveCount;
         }
 
-        public override int ComputeScore()
+        public override double ComputeScore(int nbdoors)
         {
             throw new System.NotImplementedException();
         }

@@ -14,7 +14,7 @@ public class Level
     private bool locked;
 
     private int scoringSystem;
-    private int score;
+    private double score;
 
     // Inventaire du nombre de portes disponibles
     private int or;
@@ -106,5 +106,18 @@ public class Level
     public void SetWire(int wire)
     {
         this.wire = wire;
+    }
+
+    public int GetNbDoors()
+    {
+        return or + xor + and + not + nand + wire;
+    }
+
+    public void SetScore(double score)
+    {
+        if(this.score < score)
+        {
+            this.score = score;
+        }
     }
 }
