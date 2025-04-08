@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 1743442709
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: -6657730317175659398, guid: 65cba1900a8cb2a47ad4b8e6682667b2, type: 3}
+  m_Sprite: {fileID: 8409470931475941416, guid: a409b22db33425b4191f65ca0b8f4013, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -122,8 +122,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 473.01, y: -309}
-  m_SizeDelta: {x: 545.99, y: 145}
+  m_AnchoredPosition: {x: 372, y: -195}
+  m_SizeDelta: {x: 688.74, y: 145}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &938020123910135800
 CanvasRenderer:
@@ -153,7 +153,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 12656fff1d18f9b4680401af737f9273, type: 3}
+  m_Sprite: {fileID: -6786960126500382011, guid: 8ed89ff9e37a8be40b70d848f8ffd000, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -320,7 +320,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1036950743767146083}
   m_Layer: 0
-  m_Name: FinishModal
+  m_Name: CheckModal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -382,8 +382,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -414.11, y: -309}
-  m_SizeDelta: {x: 828.21, y: 145}
+  m_AnchoredPosition: {x: -549, y: -195}
+  m_SizeDelta: {x: 443.85, y: 145}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6838355542267773405
 CanvasRenderer:
@@ -413,7 +413,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: dd8f3b3eaac55dc4d890398613bfb443, type: 3}
+  m_Sprite: {fileID: -1280958548767987325, guid: ac4378df768fa8c498baae2844eb81c5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
