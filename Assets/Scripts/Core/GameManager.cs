@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
         levels.Add(level1);
 
         Level level2 = new(2);
-        level2.Unlock();
+        level2.Lock();
         level2.SetAnd(2);
         level2.SetOr(2);
         level2.SetNot(3);
@@ -136,7 +136,7 @@ public class GameManager : MonoBehaviour
 
 
         Level level3 = new(3);
-        level3.Unlock();
+        level3.Lock();
         level3.SetOr(1);
         level3.SetNot(1);
         level3.SetNand(2);
@@ -218,6 +218,19 @@ public class GameManager : MonoBehaviour
             }
         }
         return false;
+    }
+
+    public void UnlockLevel(int level)
+    {
+        for (int i = 0; i < NB_LEVELS; i++)
+        {
+            if (levels[i].getNumber() == level)
+            {
+                levels[i].Unlock();
+                return;
+            }
+        }
+        Debug.LogError("Level " + level + " not found");
     }
 
     public Level getCurrentLevel()
