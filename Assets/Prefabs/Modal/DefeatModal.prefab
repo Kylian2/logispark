@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 938020123910135800}
   - component: {fileID: 5665520241552767084}
   - component: {fileID: 5766504336347534275}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Button2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -219,7 +219,7 @@ GameObject:
   - component: {fileID: 526011542326920750}
   - component: {fileID: 731637257015054777}
   - component: {fileID: 1827013917352880585}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -360,7 +360,7 @@ GameObject:
   - component: {fileID: 6838355542267773405}
   - component: {fileID: 889603334378749694}
   - component: {fileID: 1975232373530884857}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Button1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -479,7 +479,7 @@ GameObject:
   - component: {fileID: 7346259076522079717}
   - component: {fileID: 1996207192687996690}
   - component: {fileID: 8506525021328102678}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: NoStars
   m_TagString: Untagged
   m_Icon: {fileID: 0}
