@@ -15,15 +15,14 @@ public class AudioManager : MonoBehaviour
 
     void Awake()
     {
-        if (Instance == null)
+        if (Instance != null && Instance != this)
         {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
+            return;
         }
-        else
-        {
-            Destroy(gameObject);
-        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+        Debug.Log("AudioManager instance initialized: " + Instance);
     }
 
     void Start()
@@ -60,6 +59,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlayButtonClick()
     {
+        Debug.Log("Button click sound triggered");
         if (buttonClickClip != null)
             sfxSource.PlayOneShot(buttonClickClip);
     }

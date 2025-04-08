@@ -970,7 +970,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2834548864705334333, guid: 70a35cf30addfda4193a2ad005589b56, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6193666446213896594, guid: 70a35cf30addfda4193a2ad005589b56, type: 3}
       propertyPath: m_Camera
@@ -1394,7 +1394,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7612693831747575457, guid: 426aa3a0aac7e1c4dbaa727dc4b2513c, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
