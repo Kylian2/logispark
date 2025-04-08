@@ -212,6 +212,7 @@ public class LevelManager : MonoBehaviour
             Debug.Log("Défaite");
             modaleDefeat.SetActive(true);
         }
+        GameManager.instance.progressManager.SaveProgress();
     }
 
     public void nextLevel()

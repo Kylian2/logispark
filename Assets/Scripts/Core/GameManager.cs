@@ -9,10 +9,11 @@ public class GameManager : MonoBehaviour
 {
 
     public static GameManager instance; // Instance unique de GameManager
+    public ProgressManager progressManager;
 
     public const int NB_LEVELS = 3;
 
-    private List<Level> levels;
+    [SerializeField] private List<Level> levels = new List<Level>();
 
     private Level currentLevel;
 
@@ -29,6 +30,20 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        // Obtenir le ProgressManager
+        progressManager = GetComponent<ProgressManager>();
+        
+        // Si vous n'avez pas ajouté le composant dans l'éditeur
+        if (progressManager == null)
+        {
+            progressManager = gameObject.AddComponent<ProgressManager>();
+        }
+        
+        InitializeGame();
+        
+        // Charger la progression sauvegardée
+        progressManager.LoadProgress();
     }
 
     private void InitializeGame()
@@ -208,6 +223,11 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public List<Level> getLevels()
+    {
+        return levels;
+    }
+
     public bool levelIsLocked(int level)
     {
         for(int i = 0; i < NB_LEVELS; i++)
@@ -260,5 +280,20 @@ public class GameManager : MonoBehaviour
             }
         }
         Debug.LogError("Level " + level + " not found");
+    }
+
+    // Sauvegarde automatique en quittant le jeu
+    private void OnApplicationQuit()
+    {
+        progressManager.SaveProgress();
+    }
+    
+    // Sauvegarde automatique en mettant le jeu en pause
+    private void OnApplicationPause(bool pauseStatus)
+    {
+        if (pauseStatus)
+        {
+            progressManager.SaveProgress();
+        }
     }
 }

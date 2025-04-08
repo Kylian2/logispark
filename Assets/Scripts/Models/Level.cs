@@ -120,4 +120,9 @@ public class Level
             this.score = score;
         }
     }
+
+    public double GetScore()
+    {
+        return score;
+    }
 }
