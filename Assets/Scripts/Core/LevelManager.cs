@@ -4,6 +4,8 @@ using UnityEngine.PlayerLoop;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+using LogiSpark.Models;
+
 public class LevelManager : MonoBehaviour
 {
 
@@ -84,7 +86,7 @@ public class LevelManager : MonoBehaviour
         Transform gateTransform = gridElement.transform.Find("gate");
         if (gateTransform != null)
         {
-            // Charger le sprite depuis les ressources
+            /* Charger le sprite depuis les ressources
             SpriteRenderer spriteRenderer = gateTransform.GetComponent<SpriteRenderer>();
             if (spriteRenderer != null)
             {
@@ -93,6 +95,18 @@ public class LevelManager : MonoBehaviour
             else
             {
                 Debug.LogError("SpriteRenderer not found on gate object.");
+            }
+            */
+
+            // Charger l'image depuis les ressources
+            Image image = gateTransform.GetComponent<Image>();
+            if (image != null)
+            {
+                image.sprite = Resources.Load<Sprite>("Graphics/Gates/" + gateType);
+            }
+            else
+            {
+                Debug.LogError("Image not found on gate object.");
             }
         }
         else
@@ -110,6 +124,15 @@ public class LevelManager : MonoBehaviour
         {
             Debug.LogError("Quantity text not found in prefab.");
         }
+
+        // Créer un composant bouton et l'ajouter au game object gate
+        Button buttonGateTransform = gateTransform.AddComponent<Button>();
+
+        // Lier le script ButtonInventoryGate au game object gate
+        ButtonInventoryGate gateController = gateTransform.AddComponent<ButtonInventoryGate>();
+        
+        gateController.Initialize(quantityText, activeLevel);
+
     }
 
     public void PauseGame()
