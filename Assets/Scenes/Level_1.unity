@@ -403,6 +403,10 @@ PrefabInstance:
       propertyPath: m_PresetInfoIsWorld
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6159909985391025411, guid: bfb15f94742c3b34ead3d2c7a03ae723, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -491
+      objectReference: {fileID: 0}
     - target: {fileID: 6345575719337849566, guid: bfb15f94742c3b34ead3d2c7a03ae723, type: 3}
       propertyPath: m_Camera
       value: 
@@ -488,7 +492,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7362074199646038959, guid: 10b7c86da7d4eff4c9f320175224ff33, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.17
+      value: -5.44
       objectReference: {fileID: 0}
     - target: {fileID: 7362074199646038959, guid: 10b7c86da7d4eff4c9f320175224ff33, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1600,7 +1604,7 @@ PrefabInstance:
     - target: {fileID: 1184026498080398759, guid: 6949b2182183bb048b89ac2ab88068c0, type: 3}
       propertyPath: gridElementPrefab
       value: 
-      objectReference: {fileID: 7979694405182175351, guid: f8d94101874a0c6488c7f0a4f6f2a05c, type: 3}
+      objectReference: {fileID: 7012077880729784937, guid: af88cf94f763e5547a75e2d6fbc91737, type: 3}
     - target: {fileID: 7297871137624630255, guid: 6949b2182183bb048b89ac2ab88068c0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.20266947
