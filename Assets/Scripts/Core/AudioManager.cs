@@ -5,14 +5,11 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
 
-    [Header("Sources")]
     public AudioSource musicSource;
     public AudioSource sfxSource;
 
-    [Header("Musiques")]
     public AudioClip[] musicClips; 
 
-    [Header("Effets Sonores")]
     public AudioClip buttonClickClip;
     public AudioClip[] sfxClips;
 
