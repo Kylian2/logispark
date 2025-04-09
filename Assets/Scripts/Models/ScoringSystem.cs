@@ -5,7 +5,7 @@ namespace LogiSpark.Models
     public abstract class ScoringSystem
     {
         // Method to compute the score
-        public abstract int ComputeScore();
+        public abstract double ComputeScore(int nbdoors);
 
         // Method to reset the scoring system
         public abstract void Reset();

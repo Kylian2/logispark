@@ -8,10 +8,9 @@ namespace LogiSpark.Models
         private TimeSpan elapsedTime;
         private bool isPaused = false;
 
-        public override int ComputeScore()
+        public override double ComputeScore(int nbdoors)
         {
-            // Calcule le score final en fonction du temps écoulé
-            return (int)GetTotalElapsedTime().TotalSeconds;
+            return nbdoors*4/((int)GetTotalElapsedTime().TotalSeconds+1)*0.5*100;
         }
 
         public override void Reset()
@@ -77,7 +76,7 @@ namespace LogiSpark.Models
         public override int GetInGameScore()
         {
             // Retourne le temps écoulé actuel en secondes
-            return (int)GetTotalElapsedTime().TotalSeconds;
+            return (int)GetTotalElapsedTime().TotalSeconds + 1;
         }
 
         private TimeSpan GetTotalElapsedTime()

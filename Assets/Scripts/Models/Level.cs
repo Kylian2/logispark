@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using LogiSpark.Models;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 
@@ -13,7 +15,7 @@ public class Level
     private bool locked;
 
     private int scoringSystem;
-    private int score;
+    private double score;
 
     // Inventaire du nombre de portes disponibles
     private int or;
@@ -23,6 +25,8 @@ public class Level
     private int nand;
     private int nor;
     private int wire;
+
+    public Func<Dictionary<string, List<Tree<LogicGate>>>, Tree<LogicGate>> treemaker;
 
 
     public Level(int num)
@@ -103,5 +107,23 @@ public class Level
     public void SetWire(int wire)
     {
         this.wire = wire;
+    }
+
+    public int GetNbDoors()
+    {
+        return or + xor + and + not + nand + wire;
+    }
+
+    public void SetScore(double score)
+    {
+        if(this.score < score)
+        {
+            this.score = score;
+        }
+    }
+
+    public double GetScore()
+    {
+        return score;
     }
 }

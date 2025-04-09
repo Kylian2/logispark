@@ -16,13 +16,19 @@ public class ActiveLevel
     private List<GateNAND> nand;
     private List<Wire> wire;
 
+    private Tree<LogicGate> circuit;
+
     private string gateType = ""; // Contient le nom de la porte actuellement sélectionnée
     private Dictionary<string, ButtonInventoryGate> inventoryGates; // Contient les portes logiques de l'inventaire du niveau actuel
+
+    private Dictionary<string, List<Tree<LogicGate>>> emplacements;
 
     public ActiveLevel(Level level)
     {
         this.level = level;
         scoringSystem = new TimingSystem();
+        emplacements = new Dictionary<string, List<Tree<LogicGate>>>();
+        circuit = level.treemaker(emplacements);
         inventoryGates = new Dictionary<string, ButtonInventoryGate>();
     }
 
@@ -84,6 +90,20 @@ public class ActiveLevel
         return scoringSystem;
     }
 
+    public bool Evaluate()
+    {
+        return circuit.EvaluateCircuit();
+    }
+
+    public Tree<LogicGate> GetCircuit()
+    {
+        return circuit;
+    }
+
+    public int GetNbDoors(){
+        return level.GetNbDoors();
+    }
+
     public string GetGateType()
     {
         return gateType;
@@ -112,5 +132,10 @@ public class ActiveLevel
                 paire.Value.Deselect();
             }
         }
+    }
+
+    public Dictionary<string, List<Tree<LogicGate>>> GetEmplacements()
+    {
+        return emplacements;
     }
 }
