@@ -186,5 +186,9 @@ namespace LogiSpark.Models
             image.color = Color.yellow;
         }
 
+        public void Lumos(){
+            image.sprite = Resources.Load<Sprite>("Graphics/Gates/Lumos/" + gateType);
+        }
+
     }
 }
