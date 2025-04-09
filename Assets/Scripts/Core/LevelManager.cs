@@ -44,17 +44,17 @@ public class LevelManager : MonoBehaviour
         
         if(activeLevel.GetLevel().GetOr() > 0)
         {
-            AddGateToInventory("gate_or", activeLevel.GetLevel().GetAnd());
+            AddGateToInventory("gate_or", activeLevel.GetLevel().GetOr());
         }
 
         if(activeLevel.GetLevel().GetNand() > 0)
         {
-            AddGateToInventory("gate_nand", activeLevel.GetLevel().GetAnd());
+            AddGateToInventory("gate_nand", activeLevel.GetLevel().GetNand());
         }
 
         if(activeLevel.GetLevel().GetXor() > 0)
         {
-            AddGateToInventory("gate_xor", activeLevel.GetLevel().GetAnd());
+            AddGateToInventory("gate_xor", activeLevel.GetLevel().GetXor());
         }
         modalePause.SetActive(false);
         activeLevel.StartScore();
