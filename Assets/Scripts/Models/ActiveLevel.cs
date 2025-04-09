@@ -16,11 +16,14 @@ public class ActiveLevel
     private List<GateNAND> nand;
     private List<Wire> wire;
 
+    private string gateType = ""; // Contient le nom de la porte actuellement sélectionnée
+    private Dictionary<string, ButtonInventoryGate> inventoryGates; // Contient les portes logiques de l'inventaire du niveau actuel
 
     public ActiveLevel(Level level)
     {
         this.level = level;
         scoringSystem = new TimingSystem();
+        inventoryGates = new Dictionary<string, ButtonInventoryGate>();
     }
 
     public void InstanciateGates()
@@ -79,6 +82,31 @@ public class ActiveLevel
     public ScoringSystem GetScoringSystem()
     {
         return scoringSystem;
+    }
+
+    public string GetGateType()
+    {
+        return gateType;
+    }
+
+    public void SetGateType(string gateType)
+    {
+        this.gateType = gateType;
+    }
+
+    public void AddGate(string gateType, ButtonInventoryGate buttonInventoryGate)
+    {
+        inventoryGates.Add(gateType, buttonInventoryGate);
+    }
+
+    public void DeselectGates(string selectedGateType)
+    {
+        foreach (KeyValuePair<string, ButtonInventoryGate> paire in inventoryGates)
+        {
+            if(paire.Key != selectedGateType){
+                paire.Value.Deselect();
+            }
+        }
     }
 
 }

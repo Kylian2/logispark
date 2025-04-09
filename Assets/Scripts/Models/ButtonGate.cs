@@ -4,49 +4,19 @@ using TMPro;
 
 namespace LogiSpark.Models
 {
-    public class ButtonInventoryGate : MonoBehaviour
+    public class ButtonGate : MonoBehaviour
     {
         private bool selected = false;
         private string gateType;
         private TextMeshProUGUI quantityText;
-        private LevelManager levelManager;
+        private ActiveLevel activeLevel;
         private Button button;
         private GameObject borderObject;
-        
-        public void Initialize(string gateType, TextMeshProUGUI quantityText, LevelManager levelManager)
-        {
-            this.gateType = gateType;
-            this.quantityText = quantityText;
-            this.levelManager = levelManager;
-            
-            // Récupérer le composant Button
-            button = GetComponent<Button>();
-            
-            // Ajouter un écouteur sur ce bouton
-            button.onClick.AddListener(OnButtonClick);
-
-            // Créer une bordure jaune qui sera utilisée lorsque la porte sera sélectionnée
-            AddYellowBorder(2f);
-
-            // Récupérer la bordure et la désactiver
-            borderObject = transform.Find("YellowBorder").gameObject;
-            borderObject.SetActive(false);
-        }
         
         private void OnButtonClick()
         {
             // Changer la sélection du bouton
             selected = !selected;
-
-            if(selected)
-            {
-                levelManager.activeLevel.DeselectGates(gateType);
-                levelManager.activeLevel.SetGateType(gateType);
-            }
-            else
-            {
-                levelManager.activeLevel.SetGateType("");
-            }
 
             // Activer ou désactiver la bordure en fonction
             borderObject.SetActive(selected);
@@ -111,12 +81,6 @@ namespace LogiSpark.Models
             
             Image image = side.AddComponent<Image>();
             image.color = Color.yellow;
-        }
-
-        public void Deselect()
-        {
-            selected = false;
-            borderObject.SetActive(false);
         }
 
     }

@@ -86,18 +86,6 @@ public class LevelManager : MonoBehaviour
         Transform gateTransform = gridElement.transform.Find("gate");
         if (gateTransform != null)
         {
-            /* Charger le sprite depuis les ressources
-            SpriteRenderer spriteRenderer = gateTransform.GetComponent<SpriteRenderer>();
-            if (spriteRenderer != null)
-            {
-                spriteRenderer.sprite = Resources.Load<Sprite>("Graphics/Gates/" + gateType);
-            }
-            else
-            {
-                Debug.LogError("SpriteRenderer not found on gate object.");
-            }
-            */
-
             // Charger l'image depuis les ressources
             Image image = gateTransform.GetComponent<Image>();
             if (image != null)
@@ -130,9 +118,11 @@ public class LevelManager : MonoBehaviour
 
         // Lier le script ButtonInventoryGate au game object gate
         ButtonInventoryGate gateController = gateTransform.AddComponent<ButtonInventoryGate>();
-        
-        gateController.Initialize(quantityText, activeLevel);
 
+        gateController.Initialize(gateType, quantityText, this);
+
+        // L'ajouter à activeLevel
+        activeLevel.AddGate(gateType, gateController);
     }
 
     public void PauseGame()
