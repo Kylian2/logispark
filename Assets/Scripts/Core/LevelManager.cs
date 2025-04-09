@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 using LogiSpark.Models;
+using System.Collections.Generic;
+using System.Collections;
 
 public class LevelManager : MonoBehaviour
 {
@@ -38,6 +40,8 @@ public class LevelManager : MonoBehaviour
 
     public Button playAgain;
     public Button HomeButton2;
+
+    public List<ButtonGate> buttonGates;
 
 
     void Start()
@@ -186,60 +190,6 @@ public class LevelManager : MonoBehaviour
         UIManager.instance.displayLevels();
     }
 
-    public void LaunchVerif()
-    {
-        Debug.Log(activeLevel.GetCircuit().ToString());
-        activeLevel.GetScoringSystem().Stop();
-        //bool evaluation = activeLevel.Evaluate();
-        //Debug.Log(evaluation);
-        double score = activeLevel.GetScoringSystem().ComputeScore(activeLevel.GetNbDoors());
-        bool evaluation = activeLevel.Evaluate();
-        if(evaluation){
-            Sprite activeState = Resources.Load<Sprite>("Graphics/Modal/Win/LightStar");
-            Sprite inactiveState = Resources.Load<Sprite>("Graphics/Modal/Win/ShadowStar");
-
-
-            if (activeState == null){
-                Debug.LogError("Impossible de charger la sprite 'LightStar'");
-                return;
-            }
-            if (inactiveState == null){
-                Debug.LogError("Impossible de charger la sprite 'ShadowStar'");
-                return;
-            }
-
-            winStar1.GetComponent<Image>().sprite = inactiveState;
-            winStar2.GetComponent<Image>().sprite = inactiveState;
-            winStar3.GetComponent<Image>().sprite = inactiveState;
-
-            // Activer les étoiles en fonction du score
-            if (score >= 0){
-                winStar1.GetComponent<Image>().sprite = activeState; // 1ère étoile active si score > 0
-                if (score > 50)
-                {
-                    winStar2.GetComponent<Image>().sprite = activeState; // 2ème étoile active si score > 50
-                    if (score > 80)
-                    {
-                        winStar3.GetComponent<Image>().sprite = activeState; // 3ème étoile active si score > 80
-                    }
-                }
-            }
-            AudioManager.Instance.PauseMusic();
-            AudioManager.Instance.PlaySFX(1);
-
-            modaleVictory.SetActive(true);
-            GameManager.instance.RegisterScore(activeLevel.GetLevel().getNumber() + 1, score);
-            GameManager.instance.UnlockLevel(activeLevel.GetLevel().getNumber() + 1);
-        }else{
-            AudioManager.Instance.PauseMusic();
-            AudioManager.Instance.PlaySFX(0);
-
-            Debug.Log("Défaite");
-            modaleDefeat.SetActive(true);
-        }
-        GameManager.instance.progressManager.SaveProgress();
-    }
-
     public void nextLevel()
     {
         AudioManager.Instance.ResumeMusic();
@@ -290,5 +240,74 @@ public class LevelManager : MonoBehaviour
                 SceneManager.LoadScene("Level_1");
                 break;
         }
+    }
+
+    public void LaunchVerif()
+    {
+        pauseButton.interactable = false;
+        launchButton.interactable = false;
+        StartCoroutine(LaunchVerifCoroutine());
+    }
+
+    private IEnumerator LaunchVerifCoroutine()
+    {
+        Debug.Log(activeLevel.GetCircuit().ToString());
+        activeLevel.GetScoringSystem().Stop();
+        double score = activeLevel.GetScoringSystem().ComputeScore(activeLevel.GetNbDoors());
+        bool evaluation = activeLevel.Evaluate();
+        
+        if(evaluation){
+            // Attendre que la coroutine Lumos() se termine complètement
+            yield return StartCoroutine(LumosCoroutine());
+            
+            Sprite activeState = Resources.Load<Sprite>("Graphics/Modal/Win/LightStar");
+            Sprite inactiveState = Resources.Load<Sprite>("Graphics/Modal/Win/ShadowStar");
+
+            if (activeState == null){
+                Debug.LogError("Impossible de charger la sprite 'LightStar'");
+                yield break;  // Équivalent de "return" dans une coroutine
+            }
+            if (inactiveState == null){
+                Debug.LogError("Impossible de charger la sprite 'ShadowStar'");
+                yield break;
+            }
+
+            winStar1.GetComponent<Image>().sprite = inactiveState;
+            winStar2.GetComponent<Image>().sprite = inactiveState;
+            winStar3.GetComponent<Image>().sprite = inactiveState;
+
+            // Activer les étoiles en fonction du score
+            if (score >= 0){
+                winStar1.GetComponent<Image>().sprite = activeState;
+                if (score > 50)
+                {
+                    winStar2.GetComponent<Image>().sprite = activeState;
+                    if (score > 80)
+                    {
+                        winStar3.GetComponent<Image>().sprite = activeState;
+                    }
+                }
+            }
+            modaleVictory.SetActive(true);
+            GameManager.instance.RegisterScore(activeLevel.GetLevel().getNumber() + 1, score);
+            GameManager.instance.UnlockLevel(activeLevel.GetLevel().getNumber() + 1);
+        }else{
+            Debug.Log("Défaite");
+            modaleDefeat.SetActive(true);
+        }
+        GameManager.instance.progressManager.SaveProgress();
+    }
+
+    private IEnumerator LumosCoroutine()
+    {
+        // Appel de la méthode Lumos() sur chaque porte avec délai
+        foreach (ButtonGate buttonGate in buttonGates)
+        {
+            buttonGate.Lumos();
+            // Attendre 0.5 seconde
+            yield return new WaitForSeconds(0.75f);
+        }
+        
+        yield return new WaitForSeconds(0.75f);
     }
 }
