@@ -1,8 +1,5 @@
-using System;
 using System.Collections.Generic;
-using System.Text;
 using LogiSpark.Models;
-using Unity.Android.Gradle;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
