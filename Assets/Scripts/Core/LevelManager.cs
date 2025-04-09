@@ -76,6 +76,7 @@ public class LevelManager : MonoBehaviour
         {
             AddGateToInventory("gate_xor", activeLevel.GetLevel().GetXor());
         }
+        
         modalePause.SetActive(false);
         modaleVictory.SetActive(false);
         modaleDefeat.SetActive(false);
@@ -244,6 +245,7 @@ public class LevelManager : MonoBehaviour
 
     public void LaunchVerif()
     {
+        AudioManager.Instance.PlayButtonClick();
         pauseButton.interactable = false;
         launchButton.interactable = false;
         StartCoroutine(LaunchVerifCoroutine());
@@ -288,10 +290,16 @@ public class LevelManager : MonoBehaviour
                     }
                 }
             }
+            AudioManager.Instance.PauseMusic();
+            AudioManager.Instance.PlaySFX(1);
+
             modaleVictory.SetActive(true);
             GameManager.instance.RegisterScore(activeLevel.GetLevel().getNumber() + 1, score);
             GameManager.instance.UnlockLevel(activeLevel.GetLevel().getNumber() + 1);
         }else{
+            AudioManager.Instance.PauseMusic();
+            AudioManager.Instance.PlaySFX(0);
+
             Debug.Log("Défaite");
             modaleDefeat.SetActive(true);
         }
