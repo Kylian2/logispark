@@ -6,6 +6,7 @@ namespace LogiSpark.Models
 {
     public class ButtonInventoryGate : MonoBehaviour
     {
+        private bool locked = false;
         private bool selected = false;
         private string gateType;
         private TextMeshProUGUI quantityText;
@@ -26,7 +27,7 @@ namespace LogiSpark.Models
             button.onClick.AddListener(OnButtonClick);
 
             // Créer une bordure jaune qui sera utilisée lorsque la porte sera sélectionnée
-            AddYellowBorder(2f);
+            AddYellowBorder(2.5f);
 
             // Récupérer la bordure et la désactiver
             borderObject = transform.Find("YellowBorder").gameObject;
@@ -35,21 +36,48 @@ namespace LogiSpark.Models
         
         private void OnButtonClick()
         {
-            // Changer la sélection du bouton
-            selected = !selected;
-
-            if(selected)
+            if(!locked)
             {
-                levelManager.activeLevel.DeselectGates(gateType);
-                levelManager.activeLevel.SetGateType(gateType);
-            }
-            else
-            {
-                levelManager.activeLevel.SetGateType("");
-            }
+                // Changer la sélection du bouton
+                selected = !selected;
 
-            // Activer ou désactiver la bordure en fonction
-            borderObject.SetActive(selected);
+                if(selected)
+                {
+                    levelManager.activeLevel.DeselectGates(gateType);
+                    levelManager.activeLevel.SetGateType(gateType);
+                }
+                else
+                {
+                    levelManager.activeLevel.SetGateType("");
+                }
+
+                // Activer ou désactiver la bordure en fonction
+                borderObject.SetActive(selected);
+                }
+        }
+
+        public void IncrementQuantity()
+        {
+            int quantity = int.Parse(quantityText.text);
+            quantity += 1;
+            quantityText.text = quantity.ToString();
+
+            if(quantity == 1)
+            {
+                locked = false;
+            }
+        }
+
+        public void DecrementQuantity()
+        {
+            int quantity = int.Parse(quantityText.text);
+            quantity -= 1;
+            quantityText.text = quantity.ToString();
+
+            if(quantity == 0)
+            {
+                locked = true;
+            }        
         }
 
         public void AddYellowBorder(float borderThickness)

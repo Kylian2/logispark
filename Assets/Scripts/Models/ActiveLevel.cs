@@ -99,6 +99,11 @@ public class ActiveLevel
         inventoryGates.Add(gateType, buttonInventoryGate);
     }
 
+    public ButtonInventoryGate GetButtonInventoryGate(string gateType)
+    {
+        return inventoryGates[gateType];
+    }
+
     public void DeselectGates(string selectedGateType)
     {
         foreach (KeyValuePair<string, ButtonInventoryGate> paire in inventoryGates)
@@ -108,5 +113,4 @@ public class ActiveLevel
             }
         }
     }
-
 }

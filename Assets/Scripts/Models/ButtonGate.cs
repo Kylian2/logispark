@@ -2,24 +2,94 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+using System.Linq;
+
 namespace LogiSpark.Models
 {
     public class ButtonGate : MonoBehaviour
     {
         private bool selected = false;
-        private string gateType;
-        private TextMeshProUGUI quantityText;
-        private ActiveLevel activeLevel;
+        private string gateType = "";
+        [SerializeField] private LevelManager levelManager;
+        [SerializeField] private string[] acceptableGates;
         private Button button;
+        private Image image;
         private GameObject borderObject;
+
+        public void Start()
+        {
+            // Récupérer le composant Button
+            button = GetComponent<Button>();
+
+            // Récupérer l'image
+            image = GetComponent<Image>();
+
+            // Ajouter un écouteur sur ce bouton
+            button.onClick.AddListener(OnButtonClick);
+
+            // Créer une bordure jaune qui sera utilisée lorsque la porte sera sélectionnée
+            AddYellowBorder(4f);
+
+            // Récupérer la bordure et la désactiver
+            borderObject = transform.Find("YellowBorder").gameObject;
+            borderObject.SetActive(false);
+        }
         
         private void OnButtonClick()
         {
-            // Changer la sélection du bouton
-            selected = !selected;
+            string levelManagerGateType = levelManager.activeLevel.GetGateType();
 
-            // Activer ou désactiver la bordure en fonction
-            borderObject.SetActive(selected);
+            if(acceptableGates.Contains(levelManagerGateType))
+            {
+                // Si on veut replacer la même porte, on ne fait rien
+                if(gateType == levelManagerGateType)
+                {
+                    return;
+                }
+
+                // S'il y avait une porte, on l'enlève
+                if(gateType != "")
+                {
+                    // Incrémenter de 1 le nombre d'anciennes portes
+                    levelManager.activeLevel.GetButtonInventoryGate(gateType).IncrementQuantity();
+                }
+
+                // On place la porte
+
+                gateType = levelManagerGateType;
+
+                ButtonInventoryGate buttonInventoryGate = levelManager.activeLevel.GetButtonInventoryGate(gateType);
+                // Décrémenter de 1 le nombre de portes
+                buttonInventoryGate.DecrementQuantity();
+                // Déselectionner la porte
+                buttonInventoryGate.Deselect();
+
+                // Mettre l'image de la nouvelle porte
+                image.sprite = Resources.Load<Sprite>("Graphics/Gates/" + gateType);
+
+                // On retire la porte d'active level
+                levelManager.activeLevel.SetGateType("");
+            }
+            else if(levelManagerGateType == "" && gateType != "")
+            {
+                // Changer la sélection du bouton
+                selected = !selected;
+
+                // Si on déselectionne alors qu'il y avait une porte, on enlève la porte
+                if(!selected)
+                {
+                    // Incrémenter de 1 le nombre de portes de type : gateType
+                    levelManager.activeLevel.GetButtonInventoryGate(gateType).IncrementQuantity();
+
+                    // Remettre l'image d'une porte vide
+                    image.sprite = Resources.Load<Sprite>("Graphics/Gates/empty_gate");
+
+                    // Enlever la porte
+                    gateType = "";
+                }
+
+                borderObject.SetActive(selected);
+            }
         }
 
         public void AddYellowBorder(float borderThickness)
