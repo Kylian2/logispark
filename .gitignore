@@ -45,3 +45,5 @@ ProjectSettings/
 Thumbs.db
 Desktop.ini
 
+# Fichiers de sauvegarde de progression
+Assets/player_progress.json

@@ -1,8 +1,12 @@
+using System;
 using Unity.VisualScripting;
+using UnityEditor.EditorTools;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+
+using LogiSpark.Models;
 
 public class LevelManager : MonoBehaviour
 {
@@ -20,6 +24,20 @@ public class LevelManager : MonoBehaviour
     public Button launchButton;
 
     public GameObject modalePause;
+
+    public GameObject modaleVictory;
+    public GameObject modaleDefeat;
+
+    public Button nextLevelButton;
+
+    public Button homeButton;
+
+    public GameObject winStar1;
+    public GameObject winStar2;
+    public GameObject winStar3;
+
+    public Button playAgain;
+    public Button HomeButton2;
 
 
     void Start()
@@ -42,23 +60,30 @@ public class LevelManager : MonoBehaviour
         
         if(activeLevel.GetLevel().GetOr() > 0)
         {
-            AddGateToInventory("gate_or", activeLevel.GetLevel().GetAnd());
+            AddGateToInventory("gate_or", activeLevel.GetLevel().GetOr());
         }
 
         if(activeLevel.GetLevel().GetNand() > 0)
         {
-            AddGateToInventory("gate_nand", activeLevel.GetLevel().GetAnd());
+            AddGateToInventory("gate_nand", activeLevel.GetLevel().GetNand());
         }
 
         if(activeLevel.GetLevel().GetXor() > 0)
         {
-            AddGateToInventory("gate_xor", activeLevel.GetLevel().GetAnd());
+            AddGateToInventory("gate_xor", activeLevel.GetLevel().GetXor());
         }
         modalePause.SetActive(false);
+        modaleVictory.SetActive(false);
+        modaleDefeat.SetActive(false);
         activeLevel.StartScore();
         pauseButton.onClick.AddListener(PauseGame);
         restartButton.onClick.AddListener(ResumeGame);
         leaveButton.onClick.AddListener(LeaveGame);
+        launchButton.onClick.AddListener(LaunchVerif);
+        nextLevelButton.onClick.AddListener(nextLevel);
+        homeButton.onClick.AddListener(LeaveGame);
+        HomeButton2.onClick.AddListener(LeaveGame);
+        playAgain.onClick.AddListener(ReloadGame);
     }
 
     void Update()
@@ -66,7 +91,6 @@ public class LevelManager : MonoBehaviour
         // Mettre à jour l'affichage du score
         if (scoreDisplay != null)
         {
-            Debug.Log(activeLevel.GetInGameScore().ToString());
             scoreDisplay.text = activeLevel.GetInGameScore().ToString();
         }
         else
@@ -84,15 +108,15 @@ public class LevelManager : MonoBehaviour
         Transform gateTransform = gridElement.transform.Find("gate");
         if (gateTransform != null)
         {
-            // Charger le sprite depuis les ressources
-            SpriteRenderer spriteRenderer = gateTransform.GetComponent<SpriteRenderer>();
-            if (spriteRenderer != null)
+            // Charger l'image depuis les ressources
+            Image image = gateTransform.GetComponent<Image>();
+            if (image != null)
             {
-                spriteRenderer.sprite = Resources.Load<Sprite>("Graphics/Gates/" + gateType);
+                image.sprite = Resources.Load<Sprite>("Graphics/Gates/" + gateType);
             }
             else
             {
-                Debug.LogError("SpriteRenderer not found on gate object.");
+                Debug.LogError("Image not found on gate object.");
             }
         }
         else
@@ -110,6 +134,17 @@ public class LevelManager : MonoBehaviour
         {
             Debug.LogError("Quantity text not found in prefab.");
         }
+
+        // Créer un composant bouton et l'ajouter au game object gate
+        Button buttonGateTransform = gateTransform.AddComponent<Button>();
+
+        // Lier le script ButtonInventoryGate au game object gate
+        ButtonInventoryGate gateController = gateTransform.AddComponent<ButtonInventoryGate>();
+
+        gateController.Initialize(gateType, quantityText, this);
+
+        // L'ajouter à activeLevel
+        activeLevel.AddGate(gateType, gateController);
     }
 
     public void PauseGame()
@@ -143,5 +178,101 @@ public class LevelManager : MonoBehaviour
         
         // Maintenant que la scène est chargée, afficher les niveaux
         UIManager.instance.displayLevels();
+    }
+
+    public void LaunchVerif()
+    {
+        Debug.Log(activeLevel.GetCircuit().ToString());
+        activeLevel.GetScoringSystem().Stop();
+        //bool evaluation = activeLevel.Evaluate();
+        //Debug.Log(evaluation);
+        double score = activeLevel.GetScoringSystem().ComputeScore(activeLevel.GetNbDoors());
+        bool evaluation = activeLevel.Evaluate();
+        if(evaluation){
+            Sprite activeState = Resources.Load<Sprite>("Graphics/Modal/Win/LightStar");
+            Sprite inactiveState = Resources.Load<Sprite>("Graphics/Modal/Win/ShadowStar");
+
+
+            if (activeState == null){
+                Debug.LogError("Impossible de charger la sprite 'LightStar'");
+                return;
+            }
+            if (inactiveState == null){
+                Debug.LogError("Impossible de charger la sprite 'ShadowStar'");
+                return;
+            }
+
+            winStar1.GetComponent<Image>().sprite = inactiveState;
+            winStar2.GetComponent<Image>().sprite = inactiveState;
+            winStar3.GetComponent<Image>().sprite = inactiveState;
+
+            // Activer les étoiles en fonction du score
+            if (score >= 0){
+                winStar1.GetComponent<Image>().sprite = activeState; // 1ère étoile active si score > 0
+                if (score > 50)
+                {
+                    winStar2.GetComponent<Image>().sprite = activeState; // 2ème étoile active si score > 50
+                    if (score > 80)
+                    {
+                        winStar3.GetComponent<Image>().sprite = activeState; // 3ème étoile active si score > 80
+                    }
+                }
+            }
+            modaleVictory.SetActive(true);
+            GameManager.instance.RegisterScore(activeLevel.GetLevel().getNumber() + 1, score);
+            GameManager.instance.UnlockLevel(activeLevel.GetLevel().getNumber() + 1);
+        }else{
+            Debug.Log("Défaite");
+            modaleDefeat.SetActive(true);
+        }
+        GameManager.instance.progressManager.SaveProgress();
+    }
+
+    public void nextLevel()
+    {
+        int nextLevel = activeLevel.GetLevel().getNumber() + 1;
+        if(!GameManager.instance.levelIsLocked(nextLevel)){
+            GameManager.instance.setActiveLevel(nextLevel);
+
+            switch (nextLevel)
+            {
+                case 1:
+                    SceneManager.LoadScene("Level_1");
+                    break;
+                case 2:
+                    SceneManager.LoadScene("Level_2");
+                    break;
+                case 3:
+                    SceneManager.LoadScene("Level_3");
+                    break;
+                default:
+                    SceneManager.LoadScene("Level_1");
+                    break;
+            }
+
+        }else{
+            Debug.Log("Level " + nextLevel + " is locked");
+        }
+    }
+
+    public void ReloadGame(){
+        int currentLevel = activeLevel.GetLevel().getNumber();
+        GameManager.instance.setActiveLevel(currentLevel);
+
+        switch (currentLevel)
+        {
+            case 1:
+                SceneManager.LoadScene("Level_1");
+                break;
+            case 2:
+                SceneManager.LoadScene("Level_2");
+                break;
+            case 3:
+                SceneManager.LoadScene("Level_3");
+                break;
+            default:
+                SceneManager.LoadScene("Level_1");
+                break;
+        }
     }
 }
