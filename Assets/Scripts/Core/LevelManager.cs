@@ -32,9 +32,9 @@ public class LevelManager : MonoBehaviour
 
     public Button homeButton;
 
-    public GameObject winStart1;
-    public GameObject winStart2;
-    public GameObject winStart3;
+    public GameObject winStar1;
+    public GameObject winStar2;
+    public GameObject winStar3;
 
     public Button playAgain;
     public Button HomeButton2;
@@ -202,19 +202,19 @@ public class LevelManager : MonoBehaviour
                 return;
             }
 
-            winStart1.GetComponent<Image>().sprite = inactiveState;
-            winStart2.GetComponent<Image>().sprite = inactiveState;
-            winStart3.GetComponent<Image>().sprite = inactiveState;
+            winStar1.GetComponent<Image>().sprite = inactiveState;
+            winStar2.GetComponent<Image>().sprite = inactiveState;
+            winStar3.GetComponent<Image>().sprite = inactiveState;
 
             // Activer les étoiles en fonction du score
             if (score >= 0){
-                winStart1.GetComponent<Image>().sprite = activeState; // 1ère étoile active si score > 0
+                winStar1.GetComponent<Image>().sprite = activeState; // 1ère étoile active si score > 0
                 if (score > 50)
                 {
-                    winStart2.GetComponent<Image>().sprite = activeState; // 2ème étoile active si score > 50
+                    winStar2.GetComponent<Image>().sprite = activeState; // 2ème étoile active si score > 50
                     if (score > 80)
                     {
-                        winStart3.GetComponent<Image>().sprite = activeState; // 3ème étoile active si score > 80
+                        winStar3.GetComponent<Image>().sprite = activeState; // 3ème étoile active si score > 80
                     }
                 }
             }
