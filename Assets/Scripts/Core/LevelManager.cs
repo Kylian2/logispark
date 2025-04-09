@@ -187,7 +187,7 @@ public class LevelManager : MonoBehaviour
         //bool evaluation = activeLevel.Evaluate();
         //Debug.Log(evaluation);
         double score = activeLevel.GetScoringSystem().ComputeScore(activeLevel.GetNbDoors());
-        bool evaluation = true;
+        bool evaluation = activeLevel.Evaluate();
         if(evaluation){
             Sprite activeState = Resources.Load<Sprite>("Graphics/Modal/Win/LightStar");
             Sprite inactiveState = Resources.Load<Sprite>("Graphics/Modal/Win/ShadowStar");

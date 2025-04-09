@@ -193,6 +193,7 @@ public class Tree<T>
                 return gate.Evaluate(this.Child(0).EvaluateCircuit(), this.Child(1).EvaluateCircuit());
             }
         }
+        Debug.Log(this.ToString());
         throw new InvalidOperationException("Invalid type of data, data must be a LogicGate");
     }
 

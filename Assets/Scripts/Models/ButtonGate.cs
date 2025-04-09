@@ -8,6 +8,7 @@ namespace LogiSpark.Models
 {
     public class ButtonGate : MonoBehaviour
     {
+        public string identifier;
         private bool selected = false;
         private string gateType = "";
         [SerializeField] private LevelManager levelManager;
@@ -37,8 +38,9 @@ namespace LogiSpark.Models
         
         private void OnButtonClick()
         {
+            Debug.Log("Button clicked: " + identifier);
             string levelManagerGateType = levelManager.activeLevel.GetGateType();
-
+            Debug.Log("LevelManager gate type: " + levelManagerGateType);
             if(acceptableGates.Contains(levelManagerGateType))
             {
                 // Si on veut replacer la même porte, on ne fait rien
@@ -57,6 +59,31 @@ namespace LogiSpark.Models
                 // On place la porte
 
                 gateType = levelManagerGateType;
+                LogicGate gate = null; 
+                switch (gateType)
+                {
+                    case "gate_or":
+                        gate = new GateOR();
+                        break;
+                    case "gate_xor":
+                        gate = new GateXOR();
+                        break;
+                    case "gate_and":
+                        gate = new GateAND();
+                        break;
+                    case "gate_not":
+                        gate = new GateNOT();
+                        break;
+                    case "gate_nand":
+                        gate = new GateNAND();
+                        break;
+                }
+
+                // On place la porte sur l'arbre
+                foreach (var tree in levelManager.activeLevel.GetEmplacements()[identifier])
+                {
+                    tree.SetData(gate);
+                }
 
                 ButtonInventoryGate buttonInventoryGate = levelManager.activeLevel.GetButtonInventoryGate(gateType);
                 // Décrémenter de 1 le nombre de portes
@@ -86,6 +113,12 @@ namespace LogiSpark.Models
 
                     // Enlever la porte
                     gateType = "";
+                }
+
+                // Retrait des portes de l'arbre
+                foreach (var tree in levelManager.activeLevel.GetEmplacements()[identifier])
+                {
+                    tree.SetData(null);
                 }
 
                 borderObject.SetActive(selected);

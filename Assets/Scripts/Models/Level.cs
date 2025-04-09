@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using LogiSpark.Models;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
@@ -25,7 +26,7 @@ public class Level
     private int nor;
     private int wire;
 
-    public Func<Tree<LogicGate>> treemaker; 
+    public Func<Dictionary<string, List<Tree<LogicGate>>>, Tree<LogicGate>> treemaker;
 
 
     public Level(int num)

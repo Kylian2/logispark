@@ -21,11 +21,14 @@ public class ActiveLevel
     private string gateType = ""; // Contient le nom de la porte actuellement sélectionnée
     private Dictionary<string, ButtonInventoryGate> inventoryGates; // Contient les portes logiques de l'inventaire du niveau actuel
 
+    private Dictionary<string, List<Tree<LogicGate>>> emplacements;
+
     public ActiveLevel(Level level)
     {
         this.level = level;
         scoringSystem = new TimingSystem();
-        circuit = level.treemaker();
+        emplacements = new Dictionary<string, List<Tree<LogicGate>>>();
+        circuit = level.treemaker(emplacements);
         inventoryGates = new Dictionary<string, ButtonInventoryGate>();
     }
 
@@ -129,5 +132,10 @@ public class ActiveLevel
                 paire.Value.Deselect();
             }
         }
+    }
+
+    public Dictionary<string, List<Tree<LogicGate>>> GetEmplacements()
+    {
+        return emplacements;
     }
 }

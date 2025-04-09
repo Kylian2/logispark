@@ -1580,6 +1580,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5ad9cbff18abf045a6629151006225b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  identifier: 3
   levelManager: {fileID: 1779665503}
   acceptableGates:
   - gate_not
@@ -2039,6 +2040,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5ad9cbff18abf045a6629151006225b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  identifier: 4
   levelManager: {fileID: 1779665503}
   acceptableGates:
   - gate_and

@@ -59,11 +59,15 @@ public class GameManager : MonoBehaviour
         level1.SetOr(1);
         level1.SetNot(2);
 
-        level1.treemaker = () => {
+        level1.treemaker = emplacement =>
+        {
             LogicGate level1Source = new Source();
 
             LogicGate level1Gate1 = new GateNOT();
             LogicGate level1Gate2 = new GateNOT();
+
+            emplacement.Add("3", new List<Tree<LogicGate>>());
+            emplacement.Add("4", new List<Tree<LogicGate>>());
 
             Tree<LogicGate> lvl1source1 = new Tree<LogicGate>(level1Source);
             Tree<LogicGate> lvl1source2 = new Tree<LogicGate>(level1Source);
@@ -76,10 +80,12 @@ public class GameManager : MonoBehaviour
         
             Tree<LogicGate> lvl1spot3 = new Tree<LogicGate>(null);
             lvl1spot3.AddChildren(lvl1spot2);
+            emplacement["3"].Add(lvl1spot3);
 
             Tree<LogicGate> lvl1spot4 = new Tree<LogicGate>(null);
             lvl1spot4.AddChildren(lvl1spot1);
             lvl1spot4.AddChildren(lvl1spot3);
+            emplacement["4"].Add(lvl1spot4);
             
             Tree<LogicGate> destination = new Tree<LogicGate>(new Wire());
             destination.AddChildren(lvl1spot4);
@@ -94,11 +100,17 @@ public class GameManager : MonoBehaviour
         level2.SetOr(2);
         level2.SetNot(3);
 
-        level2.treemaker = () => {
+        level2.treemaker = emplacement =>
+        {
             LogicGate level2Source = new Source();
 
             LogicGate level2Gate1 = new GateAND();
             LogicGate level2Gate2 = new GateNOT();
+
+            emplacement.Add("2", new List<Tree<LogicGate>>());
+            emplacement.Add("3", new List<Tree<LogicGate>>());
+            emplacement.Add("4", new List<Tree<LogicGate>>());
+            emplacement.Add("5", new List<Tree<LogicGate>>());
 
             Tree<LogicGate> lvl2source1 = new Tree<LogicGate>(level2Source);
             Tree<LogicGate> lvl2source2 = new Tree<LogicGate>(level2Source);
@@ -121,21 +133,26 @@ public class GameManager : MonoBehaviour
             /* Niveau 2 de l'arbre */
             Tree<LogicGate> lvl2spot5 = new Tree<LogicGate>(null);
             lvl2spot5.AddChildren(lvl2spot1);
+            emplacement["2"].Add(lvl2spot5);
 
             Tree<LogicGate> lvl2spot6 = new Tree<LogicGate>(null);
             lvl2spot6.AddChildren(lvl2spot2);
+            emplacement["2"].Add(lvl2spot6);
 
             Tree<LogicGate> lvl2spot7 = new Tree<LogicGate>(null);
             lvl2spot7.AddChildren(lvl2spot3);
+            emplacement["3"].Add(lvl2spot7);
 
             /* Niveau 3 de l'arbre */
             Tree<LogicGate> lvl2spot8 = new Tree<LogicGate>(null);
             lvl2spot8.AddChildren(lvl2spot5);
             lvl2spot8.AddChildren(lvl2spot6);
+            emplacement["4"].Add(lvl2spot8);
 
             Tree<LogicGate> lvl2spot9 = new Tree<LogicGate>(null);
             lvl2spot9.AddChildren(lvl2spot4);
             lvl2spot9.AddChildren(lvl2spot7);
+            emplacement["5"].Add(lvl2spot9);
 
             /* Niveau 4 de l'arbre */
             Tree<LogicGate> lvl2spot10 = new Tree<LogicGate>(level2Gate1);
@@ -156,11 +173,17 @@ public class GameManager : MonoBehaviour
         level3.SetNot(1);
         level3.SetNand(2);
 
-        level3.treemaker = () => {
+        level3.treemaker = emplacement =>
+        { 
             LogicGate level3Source = new Source();
             LogicGate level3Gate1 = new GateAND();
             LogicGate level3Gate2 = new GateNOT();
             LogicGate level3Gate3 = new GateAND();
+
+            emplacement.Add("1", new List<Tree<LogicGate>>());
+            emplacement.Add("2", new List<Tree<LogicGate>>());
+            emplacement.Add("4", new List<Tree<LogicGate>>());
+            emplacement.Add("6", new List<Tree<LogicGate>>());
 
             Tree<LogicGate> lvl3source1 = new Tree<LogicGate>(level3Source);
             Tree<LogicGate> lvl3source2 = new Tree<LogicGate>(level3Source);
@@ -176,30 +199,35 @@ public class GameManager : MonoBehaviour
             Tree<LogicGate> lvl3spot1 = new Tree<LogicGate>(null);
             lvl3spot1.AddChildren(lvl3source1);
             lvl3spot1.AddChildren(lvl3source2);
+            emplacement["2"].Add(lvl3spot1);
 
             Tree<LogicGate> lvl3spot2 = new Tree<LogicGate>(null);
             lvl3spot2.AddChildren(lvl3source4);
             lvl3spot2.AddChildren(lvl3source5);
+            emplacement["1"].Add(lvl3spot2);
 
             Tree<LogicGate> lvl3spot3 = new Tree<LogicGate>(null);
             lvl3spot3.AddChildren(lvl3source7);
+            emplacement["2"].Add(lvl3spot3);
 
             Tree<LogicGate> lvl3spot4 = new Tree<LogicGate>(null);
             lvl3spot4.AddChildren(lvl3source8);
             lvl3spot4.AddChildren(lvl3source9);
+            emplacement["1"].Add(lvl3spot4);
 
             /* Niveau 2 de l'arbre */
             Tree<LogicGate> lvl3spot5 = new Tree<LogicGate>(level3Gate1);
             lvl3spot5.AddChildren(lvl3spot1);
             lvl3spot5.AddChildren(lvl3source3);
 
-            Tree<LogicGate> lvl3spot6 = new Tree<LogicGate>(null);
+            Tree<LogicGate> lvl3spot6 = new Tree<LogicGate>(level3Gate1);
             lvl3spot6.AddChildren(lvl3spot2);
             lvl3spot6.AddChildren(lvl3source6);
 
             Tree<LogicGate> lvl3spot7 = new Tree<LogicGate>(null);
             lvl3spot7.AddChildren(lvl3spot3);
             lvl3spot7.AddChildren(lvl3spot4);
+            emplacement["4"].Add(lvl3spot7);
 
             /* Niveau 3 de l'arbre */   
             Tree<LogicGate> lvl3spot8 = new Tree<LogicGate>(level3Gate2);
@@ -208,6 +236,7 @@ public class GameManager : MonoBehaviour
             Tree<LogicGate> lvl3spot9 = new Tree<LogicGate>(null);
             lvl3spot9.AddChildren(lvl3spot6);
             lvl3spot9.AddChildren(lvl3spot7);
+            emplacement["6"].Add(lvl3spot9);
 
             /* Niveau 4 de l'arbre */
             Tree<LogicGate> lvl3spot10 = new Tree<LogicGate>(level3Gate3);
