@@ -4,6 +4,8 @@ using UnityEngine.PlayerLoop;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+using LogiSpark.Models;
+
 public class LevelManager : MonoBehaviour
 {
 
@@ -42,17 +44,17 @@ public class LevelManager : MonoBehaviour
         
         if(activeLevel.GetLevel().GetOr() > 0)
         {
-            AddGateToInventory("gate_or", activeLevel.GetLevel().GetAnd());
+            AddGateToInventory("gate_or", activeLevel.GetLevel().GetOr());
         }
 
         if(activeLevel.GetLevel().GetNand() > 0)
         {
-            AddGateToInventory("gate_nand", activeLevel.GetLevel().GetAnd());
+            AddGateToInventory("gate_nand", activeLevel.GetLevel().GetNand());
         }
 
         if(activeLevel.GetLevel().GetXor() > 0)
         {
-            AddGateToInventory("gate_xor", activeLevel.GetLevel().GetAnd());
+            AddGateToInventory("gate_xor", activeLevel.GetLevel().GetXor());
         }
         modalePause.SetActive(false);
         activeLevel.StartScore();
@@ -84,15 +86,15 @@ public class LevelManager : MonoBehaviour
         Transform gateTransform = gridElement.transform.Find("gate");
         if (gateTransform != null)
         {
-            // Charger le sprite depuis les ressources
-            SpriteRenderer spriteRenderer = gateTransform.GetComponent<SpriteRenderer>();
-            if (spriteRenderer != null)
+            // Charger l'image depuis les ressources
+            Image image = gateTransform.GetComponent<Image>();
+            if (image != null)
             {
-                spriteRenderer.sprite = Resources.Load<Sprite>("Graphics/Gates/" + gateType);
+                image.sprite = Resources.Load<Sprite>("Graphics/Gates/" + gateType);
             }
             else
             {
-                Debug.LogError("SpriteRenderer not found on gate object.");
+                Debug.LogError("Image not found on gate object.");
             }
         }
         else
@@ -110,6 +112,17 @@ public class LevelManager : MonoBehaviour
         {
             Debug.LogError("Quantity text not found in prefab.");
         }
+
+        // Créer un composant bouton et l'ajouter au game object gate
+        Button buttonGateTransform = gateTransform.AddComponent<Button>();
+
+        // Lier le script ButtonInventoryGate au game object gate
+        ButtonInventoryGate gateController = gateTransform.AddComponent<ButtonInventoryGate>();
+
+        gateController.Initialize(gateType, quantityText, this);
+
+        // L'ajouter à activeLevel
+        activeLevel.AddGate(gateType, gateController);
     }
 
     public void PauseGame()
