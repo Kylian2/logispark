@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 namespace LogiSpark.Models
 {
@@ -14,32 +15,6 @@ namespace LogiSpark.Models
         {
             // Récupérer l'image
             image = GetComponent<Image>();
-
-            LogicGate gate = null; 
-            switch (gateType)
-            {
-                case "gate_or":
-                    gate = new GateOR();
-                    break;
-                case "gate_xor":
-                    gate = new GateXOR();
-                    break;
-                case "gate_and":
-                    gate = new GateAND();
-                    break;
-                case "gate_not":
-                    gate = new GateNOT();
-                    break;
-                case "gate_nand":
-                    gate = new GateNAND();
-                    break;
-            }
-
-            // On place la porte sur l'arbre
-            foreach (var tree in levelManager.activeLevel.GetEmplacements()[identifier])
-            {
-                tree.SetData(gate);
-            }
         }
 
         public override void Lumos()
