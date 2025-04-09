@@ -17,12 +17,12 @@ public class AudioManager : MonoBehaviour
     {
         if (Instance != null && Instance != this)
         {
+            Destroy(gameObject);
             return;
         }
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
-        Debug.Log("AudioManager instance initialized: " + Instance);
     }
 
     void Start()
@@ -35,6 +35,16 @@ public class AudioManager : MonoBehaviour
 
         SceneManager.sceneLoaded += OnSceneLoaded;
         PlaySceneMusic(SceneManager.GetActiveScene().name); 
+    }
+
+    public void PauseMusic()
+    {
+        musicSource.Pause();
+    }
+
+    public void ResumeMusic()
+    {
+        musicSource.UnPause();
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -59,7 +69,6 @@ public class AudioManager : MonoBehaviour
 
     public void PlayButtonClick()
     {
-        Debug.Log("Button click sound triggered");
         if (buttonClickClip != null)
             sfxSource.PlayOneShot(buttonClickClip);
     }
@@ -92,9 +101,6 @@ public class AudioManager : MonoBehaviour
             case "Level_4":
                 PlayMusicByIndex(5);
                 break;
-            case "Level_5":
-                PlayMusicByIndex(6);
-                break;
             default:
                 PlayMusicByIndex(0);
                 break;
@@ -103,6 +109,12 @@ public class AudioManager : MonoBehaviour
 
     private void PlayMusicByIndex(int index)
     {
+        if (musicSource == null)
+        {
+            Debug.LogWarning("musicSource is null!");
+            return;
+        }
+        
         if (index >= 0 && index < musicClips.Length)
         {
             if (musicSource.clip != musicClips[index])

@@ -12,17 +12,20 @@ public class LevelSelectorController : MonoBehaviour
 
     void goMenu()
     {
+        AudioManager.Instance.PlayButtonClick();
         SceneManager.LoadScene("Menu");
     }
 
     public void setHomeButtonListener()
     {
         Button homeButton = GameObject.Find("Menu").GetComponent<Button>();
+
         homeButton.onClick.AddListener(goMenu);
     }
 
     public void handleClick(int level)
     {
+        AudioManager.Instance.PlaySFX(3);
         if (!GameManager.instance.levelIsLocked(level))
         {
             GameManager.instance.setActiveLevel(level);

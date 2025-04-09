@@ -18,14 +18,23 @@ public class AudioSettingsModal : MonoBehaviour
 
         if (closeButton != null)
         {
-            closeButton.onClick.AddListener(CloseModal);
+            closeButton.onClick.AddListener(() =>
+            {
+                AudioManager.Instance.PlayButtonClick();
+                CloseModal();
+            });
         }
 
-        openButton.onClick.AddListener(OpenModal);
+        openButton.onClick.AddListener(() =>
+        {
+            AudioManager.Instance.PlayButtonClick();
+            OpenModal();
+        });
     }
 
     public void OpenModal()
     {
+        
         foreach (var btn in allButtons)
         {
             if (!this.modalSettings.transform.IsChildOf(btn.transform))
