@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace LogiSpark.Models
 {
-    public class ButtonGate : MonoBehaviour
+    public class ButtonGate : UIGate
     {
         public string identifier;
         private bool selected = false;
@@ -186,7 +186,8 @@ namespace LogiSpark.Models
             image.color = Color.yellow;
         }
 
-        public void Lumos(){
+        public override void Lumos()
+        {
             image.sprite = Resources.Load<Sprite>("Graphics/Gates/Lumos/" + gateType);
         }
 

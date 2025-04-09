@@ -41,8 +41,9 @@ public class LevelManager : MonoBehaviour
     public Button playAgain;
     public Button HomeButton2;
 
-    public List<ButtonGate> buttonGates;
-
+    public List<UIGate> gates;
+    public CircuitObject source;
+    public CircuitObject destination;
 
     void Start()
     {
@@ -290,14 +291,18 @@ public class LevelManager : MonoBehaviour
 
     private IEnumerator LumosCoroutine()
     {
+        source.Lumos();
+        yield return new WaitForSeconds(0.75f);
+
         // Appel de la méthode Lumos() sur chaque porte avec délai
-        foreach (ButtonGate buttonGate in buttonGates)
+        foreach (UIGate gate in gates)
         {
-            buttonGate.Lumos();
+            gate.Lumos();
             // Attendre 0.5 seconde
             yield return new WaitForSeconds(0.75f);
         }
-        
-        yield return new WaitForSeconds(0.75f);
+
+        destination.Lumos();
+        yield return new WaitForSeconds(1f);
     }
 }
