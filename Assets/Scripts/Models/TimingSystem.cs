@@ -68,7 +68,7 @@ namespace LogiSpark.Models
             }
         }
 
-        public bool IsPaused()
+        public override bool IsPaused()
         {
             return isPaused;
         }

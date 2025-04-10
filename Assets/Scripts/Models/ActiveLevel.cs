@@ -26,7 +26,14 @@ public class ActiveLevel
     public ActiveLevel(Level level)
     {
         this.level = level;
-        scoringSystem = new TimingSystem();
+        if(level.GetScoringSystem() == Level.TIME)
+        {
+            scoringSystem = new TimingSystem();
+        }
+        else
+        {
+            scoringSystem = new MovementSystem();
+        }
         emplacements = new Dictionary<string, List<Tree<LogicGate>>>();
         circuit = level.treemaker(emplacements);
         inventoryGates = new Dictionary<string, ButtonInventoryGate>();
@@ -138,5 +145,13 @@ public class ActiveLevel
     public Dictionary<string, List<Tree<LogicGate>>> GetEmplacements()
     {
         return emplacements;
+    }
+
+    public void RegisterMove()
+    {
+        if (level.GetScoringSystem() == Level.MOVE)
+        {
+            ((MovementSystem) scoringSystem).RegisterMove();
+        }
     }
 }
