@@ -258,7 +258,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7612693831747575457, guid: 4134c78ce90a3fe41b54e95c9f0ca73d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -560,16 +560,16 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2048005264086953115, guid: bfb15f94742c3b34ead3d2c7a03ae723, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 736001460}
-    - targetCorrespondingSourceObject: {fileID: 2048005264086953115, guid: bfb15f94742c3b34ead3d2c7a03ae723, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1411832247}
-    - targetCorrespondingSourceObject: {fileID: 2048005264086953115, guid: bfb15f94742c3b34ead3d2c7a03ae723, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1766264469}
     - targetCorrespondingSourceObject: {fileID: 2048005264086953115, guid: bfb15f94742c3b34ead3d2c7a03ae723, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1689904489}
+    - targetCorrespondingSourceObject: {fileID: 2048005264086953115, guid: bfb15f94742c3b34ead3d2c7a03ae723, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 736001460}
+    - targetCorrespondingSourceObject: {fileID: 2048005264086953115, guid: bfb15f94742c3b34ead3d2c7a03ae723, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1411832247}
     - targetCorrespondingSourceObject: {fileID: 2048005264086953115, guid: bfb15f94742c3b34ead3d2c7a03ae723, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1820114449}
@@ -1507,7 +1507,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7612693831747575457, guid: ea5d1bfdce26a83428831e4f5b938f0d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1906,7 +1906,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2431725325081160403, guid: e01ff0b6e7199c1438205cf1621fa1eb, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5400251031660486960, guid: e01ff0b6e7199c1438205cf1621fa1eb, type: 3}
       propertyPath: m_SortingLayer

@@ -8,7 +8,6 @@ namespace LogiSpark.Models
     {
         public string identifier;
         [SerializeField] private string gateType;
-        [SerializeField] private LevelManager levelManager;
         private Image image;
 
         public void Start()

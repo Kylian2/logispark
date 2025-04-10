@@ -292,17 +292,17 @@ public class LevelManager : MonoBehaviour
     private IEnumerator LumosCoroutine()
     {
         source.Lumos();
+        // Attendre 0.75 seconde
         yield return new WaitForSeconds(0.75f);
 
         // Appel de la méthode Lumos() sur chaque porte avec délai
         foreach (UIGate gate in gates)
         {
             gate.Lumos();
-            // Attendre 0.5 seconde
             yield return new WaitForSeconds(0.75f);
         }
 
         destination.Lumos();
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.25f);
     }
 }
