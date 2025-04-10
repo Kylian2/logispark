@@ -43,6 +43,11 @@ public class LevelManager : MonoBehaviour
 
     public List<ButtonGate> buttonGates;
 
+    public GameObject[] modalsTutorial;
+    public Button[] modalButtons;
+    public GameObject warningModal;
+    public Button warningButton;
+
 
     void Start()
     {
@@ -56,7 +61,6 @@ public class LevelManager : MonoBehaviour
             AddGateToInventory("gate_not", activeLevel.GetLevel().GetNot());
         }
         
-        // Ajouter les portes AND si disponibles
         if(activeLevel.GetLevel().GetAnd() > 0)
         {
             AddGateToInventory("gate_and", activeLevel.GetLevel().GetAnd());
@@ -76,11 +80,62 @@ public class LevelManager : MonoBehaviour
         {
             AddGateToInventory("gate_xor", activeLevel.GetLevel().GetXor());
         }
-        
+
         modalePause.SetActive(false);
         modaleVictory.SetActive(false);
         modaleDefeat.SetActive(false);
-        activeLevel.StartScore();
+        warningModal.SetActive(false);
+
+        foreach(var modal in modalsTutorial)
+        {
+            modal.SetActive(false);
+        }
+
+        if (modalsTutorial != null && modalButtons != null && modalsTutorial.Length > 0 && modalButtons.Length > 0){
+            
+            // Activation de la première modale de tutoriel dans tous les cas
+            modalsTutorial[0].SetActive(true);
+            pauseButton.interactable = false;
+            launchButton.interactable = false;
+
+            // Gestion des modales de tutoriel suivantes
+            for (int i = 0; i < modalButtons.Length; i++)
+            {
+                if (modalButtons[i] == modalButtons[modalButtons.Length - 1])
+                {
+                    modalButtons[i].onClick.AddListener(() =>
+                    {
+                        pauseButton.interactable = true;
+                        launchButton.interactable = true;
+                        modalsTutorial[i].SetActive(false);
+                        activeLevel.StartScore();
+                    });
+                    break;
+                }
+                modalButtons[i].onClick.AddListener(() =>
+                {
+                    for (int i = 0; i < modalsTutorial.Length; i++)
+                    {
+                        if (modalsTutorial[i].activeSelf)
+                        {
+                            modalsTutorial[i].SetActive(false);
+
+                            int nextIndex = i + 1;
+                            if (nextIndex < modalsTutorial.Length)
+                            {
+                                modalsTutorial[nextIndex].SetActive(true);
+                            }
+                            break;
+                        }
+                    }
+                });
+            }
+        }
+        else
+        {
+            activeLevel.StartScore();
+        }
+
         pauseButton.onClick.AddListener(PauseGame);
         restartButton.onClick.AddListener(ResumeGame);
         leaveButton.onClick.AddListener(LeaveGame);
@@ -243,6 +298,23 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    public void OpenWarning(){
+        AudioManager.Instance.PlayButtonClick();
+        AudioManager.Instance.PauseMusic();
+        pauseButton.interactable = false;
+        launchButton.interactable = false;
+        warningModal.SetActive(true);
+    }
+
+    public void CloseWarning(){
+        AudioManager.Instance.PlayButtonClick();
+        AudioManager.Instance.ResumeMusic();
+        pauseButton.interactable = true;
+        launchButton.interactable = true;
+        warningModal.SetActive(false);
+        activeLevel.GetScoringSystem().Start();
+    }
+
     public void LaunchVerif()
     {
         AudioManager.Instance.PlayButtonClick();
@@ -256,8 +328,21 @@ public class LevelManager : MonoBehaviour
         Debug.Log(activeLevel.GetCircuit().ToString());
         activeLevel.GetScoringSystem().Stop();
         double score = activeLevel.GetScoringSystem().ComputeScore(activeLevel.GetNbDoors());
-        bool evaluation = activeLevel.Evaluate();
-        
+        bool evaluation;
+
+        try{
+            evaluation = activeLevel.Evaluate();
+        }catch(InvalidOperationException){
+            OpenWarning();
+
+            warningButton.onClick.AddListener(() =>
+            {
+                CloseWarning();
+            });
+
+            yield break;
+        }
+
         if(evaluation){
             // Attendre que la coroutine Lumos() se termine complètement
             yield return StartCoroutine(LumosCoroutine());
@@ -303,6 +388,7 @@ public class LevelManager : MonoBehaviour
             Debug.Log("Défaite");
             modaleDefeat.SetActive(true);
         }
+        
         GameManager.instance.progressManager.SaveProgress();
     }
 
