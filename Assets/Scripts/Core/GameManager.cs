@@ -198,7 +198,7 @@ public class GameManager : MonoBehaviour
             Tree<LogicGate> lvl3spot1 = new Tree<LogicGate>(null);
             lvl3spot1.AddChildren(lvl3source1);
             lvl3spot1.AddChildren(lvl3source2);
-            emplacement["2"].Add(lvl3spot1);
+            emplacement["1"].Add(lvl3spot1);
 
             Tree<LogicGate> lvl3spot2 = new Tree<LogicGate>(null);
             lvl3spot2.AddChildren(lvl3source4);
