@@ -128,7 +128,8 @@ public class ActiveLevel
     {
         foreach (KeyValuePair<string, ButtonInventoryGate> paire in inventoryGates)
         {
-            if(paire.Key != selectedGateType){
+            if(paire.Key != selectedGateType)
+            {
                 paire.Value.Deselect();
             }
         }
