@@ -32,6 +32,8 @@ public class Level
     public Level(int num)
     {
         number = num;
+        score = 0;
+        locked = true;
     }
 
     public void Unlock()
