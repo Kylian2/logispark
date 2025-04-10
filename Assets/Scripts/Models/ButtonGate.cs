@@ -78,6 +78,9 @@ namespace LogiSpark.Models
                     case "gate_nand":
                         gate = new GateNAND();
                         break;
+                    case "wire_gate":
+                        gate = new Wire();
+                        break;
                 }
 
                 // On place la porte sur l'arbre

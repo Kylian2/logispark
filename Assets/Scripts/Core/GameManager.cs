@@ -55,6 +55,7 @@ public class GameManager : MonoBehaviour
         level1.SetAnd(1);
         level1.SetOr(1);
         level1.SetNot(2);
+        level1.SetWire(1);
 
         level1.treemaker = emplacement =>
         {
@@ -95,7 +96,7 @@ public class GameManager : MonoBehaviour
         level2.Lock();
         level2.SetAnd(2);
         level2.SetOr(2);
-        level2.SetNot(3);
+        level2.SetNot(2);
 
         level2.treemaker = emplacement =>
         {
@@ -169,6 +170,7 @@ public class GameManager : MonoBehaviour
         level3.SetOr(1);
         level3.SetNot(1);
         level3.SetNand(2);
+        level3.SetWire(1);
 
         level3.treemaker = emplacement =>
         { 
