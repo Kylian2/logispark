@@ -2,12 +2,12 @@ using UnityEngine;
 
 namespace LogiSpark.Models
 {
-    public class MovementCounter: ScoringSystem
+    public class MovementSystem: ScoringSystem
     {
         private int moveCount;
         private bool isCounting;
 
-        public MovementCounter()
+        public MovementSystem()
         {
             moveCount = 0;
             isCounting = false;
@@ -39,12 +39,12 @@ namespace LogiSpark.Models
 
         public override double ComputeScore(int nbdoors)
         {
-            throw new System.NotImplementedException();
+            return 100 * Mathf.Exp(-moveCount+nbdoors);
         }
 
         public override void Reset()
         {
-            throw new System.NotImplementedException();
+            moveCount = 0;
         }
 
         public override int GetInGameScore()
@@ -56,6 +56,11 @@ namespace LogiSpark.Models
         public override void Pause()
         {
             isCounting = false;
+        }
+
+        public override bool IsPaused()
+        {
+            return !isCounting;
         }
 
         public override void Resume()

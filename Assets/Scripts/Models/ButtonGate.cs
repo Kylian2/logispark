@@ -127,6 +127,8 @@ namespace LogiSpark.Models
 
                 borderObject.SetActive(selected);
             }
+
+            levelManager.activeLevel.RegisterMove();
         }
 
         public void AddYellowBorder(float borderThickness)
