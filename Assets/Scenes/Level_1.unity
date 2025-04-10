@@ -1803,6 +1803,7 @@ MonoBehaviour:
   identifier: 3
   levelManager: {fileID: 1779665503}
   acceptableGates:
+  - wire_gate
   - gate_not
 --- !u!1001 &968724334
 PrefabInstance:

@@ -2532,10 +2532,14 @@ PrefabInstance:
       objectReference: {fileID: 1779665503}
     - target: {fileID: -1182962952547464184, guid: 810bb42fb23272744b04d42dde825e64, type: 3}
       propertyPath: acceptableGates.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -1182962952547464184, guid: 810bb42fb23272744b04d42dde825e64, type: 3}
       propertyPath: 'acceptableGates.Array.data[0]'
+      value: wire_gate
+      objectReference: {fileID: 0}
+    - target: {fileID: -1182962952547464184, guid: 810bb42fb23272744b04d42dde825e64, type: 3}
+      propertyPath: 'acceptableGates.Array.data[1]'
       value: gate_not
       objectReference: {fileID: 0}
     - target: {fileID: 4500789816508892240, guid: 810bb42fb23272744b04d42dde825e64, type: 3}
@@ -2877,10 +2881,14 @@ PrefabInstance:
       objectReference: {fileID: 1779665503}
     - target: {fileID: -1182962952547464184, guid: 810bb42fb23272744b04d42dde825e64, type: 3}
       propertyPath: acceptableGates.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -1182962952547464184, guid: 810bb42fb23272744b04d42dde825e64, type: 3}
       propertyPath: 'acceptableGates.Array.data[0]'
+      value: wire_gate
+      objectReference: {fileID: 0}
+    - target: {fileID: -1182962952547464184, guid: 810bb42fb23272744b04d42dde825e64, type: 3}
+      propertyPath: 'acceptableGates.Array.data[1]'
       value: gate_not
       objectReference: {fileID: 0}
     - target: {fileID: 4500789816508892240, guid: 810bb42fb23272744b04d42dde825e64, type: 3}

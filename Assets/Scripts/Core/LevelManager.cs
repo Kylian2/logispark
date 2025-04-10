@@ -78,6 +78,11 @@ public class LevelManager : MonoBehaviour
             AddGateToInventory("gate_xor", activeLevel.GetLevel().GetXor());
         }
         
+        if(activeLevel.GetLevel().GetWire() > 0)
+        {
+            AddGateToInventory("wire_gate", activeLevel.GetLevel().GetWire());
+        }
+        
         modalePause.SetActive(false);
         modaleVictory.SetActive(false);
         modaleDefeat.SetActive(false);
