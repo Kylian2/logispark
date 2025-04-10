@@ -322,4 +322,15 @@ public class GameManager : MonoBehaviour
             progressManager.SaveProgress();
         }
     }
+
+    public Level GetLevel(int level){
+        for (int i = 0; i < NB_LEVELS; i++)
+        {
+            if (levels[i].getNumber() == level)
+            {
+                return levels[i];
+            }
+        }
+        throw new System.Exception("Level " + level + " not found");
+    }
 }

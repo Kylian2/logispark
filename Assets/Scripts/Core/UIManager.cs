@@ -45,16 +45,17 @@ public class UIManager : MonoBehaviour
             Button button = Instantiate(levelButton, buttonContainer);
             
             // Créer une copie locale de i qui sera capturée par valeur
-            int levelIndex = i + 1;
+            int levelNumber = i + 1;
             
             // Utiliser cette copie locale dans le délégué
-            button.onClick.AddListener(delegate { levelSelectorController.handleClick(levelIndex); });
+            button.onClick.AddListener(delegate { levelSelectorController.handleClick(levelNumber); });
             
-            if(GameManager.instance.levelIsLocked(levelIndex)) {
+            if(GameManager.instance.levelIsLocked(levelNumber)) {
                 button.interactable = false;
-                button.GetComponent<Image>().sprite = Resources.Load<Sprite>("Graphics/Buttons/Level" + levelIndex + "/locked");
+                button.GetComponent<Image>().sprite = Resources.Load<Sprite>("Graphics/Buttons/Level" + levelNumber + "/locked");
             } else {
-                button.GetComponent<Image>().sprite = Resources.Load<Sprite>("Graphics/Buttons/Level" + levelIndex + "/unlocked");
+                Level level = GameManager.instance.GetLevel(levelNumber);
+                button.GetComponent<Image>().sprite = Resources.Load<Sprite>("Graphics/Buttons/Level" + levelNumber + "/unlocked");
             }
         }
 
