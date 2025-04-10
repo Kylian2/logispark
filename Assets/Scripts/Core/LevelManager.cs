@@ -294,8 +294,8 @@ public class LevelManager : MonoBehaviour
             AudioManager.Instance.PlaySFX(1);
 
             modaleVictory.SetActive(true);
-            GameManager.instance.RegisterScore(activeLevel.GetLevel().getNumber() + 1, score);
-            GameManager.instance.UnlockLevel(activeLevel.GetLevel().getNumber() + 1);
+            GameManager.instance.RegisterScore(activeLevel.GetLevel().getNumber(), score);
+            GameManager.instance.UnlockLevel(activeLevel.GetLevel().getNumber()+1);
         }else{
             AudioManager.Instance.PauseMusic();
             AudioManager.Instance.PlaySFX(0);

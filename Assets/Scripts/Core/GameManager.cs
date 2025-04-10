@@ -8,9 +8,9 @@ public class GameManager : MonoBehaviour
     public static GameManager instance; // Instance unique de GameManager
     public ProgressManager progressManager;
 
-    public const int NB_LEVELS = 3;
+    public const int NB_LEVELS = 10;
 
-    [SerializeField] private List<Level> levels = new List<Level>();
+    [SerializeField] private List<Level> levels;
 
     private Level currentLevel;
 
@@ -246,7 +246,11 @@ public class GameManager : MonoBehaviour
             return lvl3destination;
         };
         levels.Add(level3);
-
+        
+        for(int i = 4; i <= NB_LEVELS; i++)
+        {
+            levels.Add(new Level(i));
+        }
     }
 
     public List<Level> getLevels()
@@ -331,6 +335,7 @@ public class GameManager : MonoBehaviour
                 return levels[i];
             }
         }
-        throw new System.Exception("Level " + level + " not found");
+        Debug.LogError("Level " + level + " not found");
+        return null;
     }
 }

@@ -43,7 +43,7 @@ public class UIManager : MonoBehaviour
         buttonContainer = FindObjectOfType<GridLayoutGroup>().transform;
         for(int i = 0; i < GameManager.NB_LEVELS; i++) {
             Button button = Instantiate(levelButton, buttonContainer);
-            
+            Debug.Log(i);
             // Créer une copie locale de i qui sera capturée par valeur
             int levelNumber = i + 1;
             
@@ -55,7 +55,20 @@ public class UIManager : MonoBehaviour
                 button.GetComponent<Image>().sprite = Resources.Load<Sprite>("Graphics/Buttons/Level" + levelNumber + "/locked");
             } else {
                 Level level = GameManager.instance.GetLevel(levelNumber);
-                button.GetComponent<Image>().sprite = Resources.Load<Sprite>("Graphics/Buttons/Level" + levelNumber + "/unlocked");
+                double score = level.GetScore();
+                if (score > 0){
+                    button.GetComponent<Image>().sprite = Resources.Load<Sprite>("Graphics/Buttons/Level" + levelNumber + "/oneStar");
+                    if (score > 50)
+                    {
+                        button.GetComponent<Image>().sprite = Resources.Load<Sprite>("Graphics/Buttons/Level" + levelNumber + "/twoStars");
+                        if (score > 80)
+                        {
+                            button.GetComponent<Image>().sprite = Resources.Load<Sprite>("Graphics/Buttons/Level" + levelNumber + "/threeStars");
+                        }
+                    }
+                }else{
+                    button.GetComponent<Image>().sprite = Resources.Load<Sprite>("Graphics/Buttons/Level" + levelNumber + "/unlocked");
+                }
             }
         }
 

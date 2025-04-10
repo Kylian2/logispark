@@ -10,7 +10,7 @@ namespace LogiSpark.Models
 
         public override double ComputeScore(int nbdoors)
         {
-            return nbdoors*4/((int)GetTotalElapsedTime().TotalSeconds+1)*0.5*100;
+            return 100 * Math.Exp(-GetTotalElapsedTime().TotalSeconds/120) * (1 + nbdoors/20.0);        
         }
 
         public override void Reset()
