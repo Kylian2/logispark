@@ -98,6 +98,7 @@ public class GameManager : MonoBehaviour
         level2.SetAnd(2);
         level2.SetOr(2);
         level2.SetNot(3);
+        level2.SetWire(3);
         level2.SetScoringSystem(Level.MOVE);
 
         level2.treemaker = emplacement =>

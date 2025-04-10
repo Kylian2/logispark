@@ -215,6 +215,9 @@ public class LevelManager : MonoBehaviour
                 case 3:
                     SceneManager.LoadScene("Level_3");
                     break;
+                case 4:
+                    SceneManager.LoadScene("Level_4");
+                    break;
                 default:
                     SceneManager.LoadScene("Level_1");
                     break;
