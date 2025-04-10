@@ -77,6 +77,7 @@ public class LevelManager : MonoBehaviour
         {
             AddGateToInventory("gate_xor", activeLevel.GetLevel().GetXor());
         }
+        
         modalePause.SetActive(false);
         modaleVictory.SetActive(false);
         modaleDefeat.SetActive(false);
@@ -154,6 +155,8 @@ public class LevelManager : MonoBehaviour
 
     public void PauseGame()
     {
+        AudioManager.Instance.PlayButtonClick();
+        AudioManager.Instance.PauseMusic();
         modalePause.SetActive(true);
         activeLevel.GetScoringSystem().Pause();
         launchButton.interactable = false;
@@ -162,6 +165,8 @@ public class LevelManager : MonoBehaviour
 
     public void ResumeGame()
     {
+        AudioManager.Instance.PlayButtonClick();
+        AudioManager.Instance.ResumeMusic();
         modalePause.SetActive(false);
         activeLevel.GetScoringSystem().Resume();
         launchButton.interactable = true;
@@ -169,6 +174,8 @@ public class LevelManager : MonoBehaviour
 
     public async void LeaveGame()
     {
+        AudioManager.Instance.PlayButtonClick();
+
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("LevelSelect");
         
         // Empêcher la transition automatique vers la nouvelle scène lorsqu'elle est prête
@@ -187,6 +194,7 @@ public class LevelManager : MonoBehaviour
 
     public void nextLevel()
     {
+        AudioManager.Instance.ResumeMusic();
         int nextLevel = activeLevel.GetLevel().getNumber() + 1;
         if(!GameManager.instance.levelIsLocked(nextLevel)){
             GameManager.instance.setActiveLevel(nextLevel);
@@ -213,6 +221,9 @@ public class LevelManager : MonoBehaviour
     }
 
     public void ReloadGame(){
+        AudioManager.Instance.ResumeMusic();
+        AudioManager.Instance.PlayButtonClick();
+
         int currentLevel = activeLevel.GetLevel().getNumber();
         GameManager.instance.setActiveLevel(currentLevel);
 
@@ -235,6 +246,7 @@ public class LevelManager : MonoBehaviour
 
     public void LaunchVerif()
     {
+        AudioManager.Instance.PlayButtonClick();
         pauseButton.interactable = false;
         launchButton.interactable = false;
         StartCoroutine(LaunchVerifCoroutine());
@@ -279,10 +291,16 @@ public class LevelManager : MonoBehaviour
                     }
                 }
             }
+            AudioManager.Instance.PauseMusic();
+            AudioManager.Instance.PlaySFX(1);
+
             modaleVictory.SetActive(true);
-            GameManager.instance.RegisterScore(activeLevel.GetLevel().getNumber() + 1, score);
-            GameManager.instance.UnlockLevel(activeLevel.GetLevel().getNumber() + 1);
+            GameManager.instance.RegisterScore(activeLevel.GetLevel().getNumber(), score);
+            GameManager.instance.UnlockLevel(activeLevel.GetLevel().getNumber()+1);
         }else{
+            AudioManager.Instance.PauseMusic();
+            AudioManager.Instance.PlaySFX(0);
+
             Debug.Log("Défaite");
             modaleDefeat.SetActive(true);
         }

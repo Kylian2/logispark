@@ -15,6 +15,8 @@ public class MainMenuController : MonoBehaviour
 
     public async void StartButtonListener()
     {
+        AudioManager.Instance.PlayButtonClick();
+        
         // Commencer le chargement de la scène
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("LevelSelect");
         

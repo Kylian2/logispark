@@ -632,6 +632,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05bac3aafbef64accaa36f2b2d603518, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  progressManager: {fileID: 0}
+  levels: []
 --- !u!4 &836514689
 Transform:
   m_ObjectHideFlags: 0
@@ -676,8 +678,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 3480ba4544276cc4085e58af120727ec, type: 3}
-  m_Resource: {fileID: 8300000, guid: 3480ba4544276cc4085e58af120727ec, type: 3}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -875,18 +877,18 @@ MonoBehaviour:
   musicSource: {fileID: 1062518521}
   sfxSource: {fileID: 1062518520}
   musicClips:
-  - {fileID: 8300000, guid: e7f30d743fc1fbd41a06f56412322fe7, type: 3}
-  - {fileID: 8300000, guid: a7609949e389b834f929b822614f7e32, type: 3}
-  - {fileID: 8300000, guid: 179ef8a16c538be4b8456386818cf389, type: 3}
-  - {fileID: 8300000, guid: 3a7fac9635b5198469ca2092f04b0ff6, type: 3}
-  - {fileID: 8300000, guid: de99a57097c64dd439be46b2bf60c1df, type: 3}
-  - {fileID: 8300000, guid: 114ee4788134bfb47971ccd2ddf81160, type: 3}
-  - {fileID: 8300000, guid: ce2c6c743c57b20469b163b78fb5a271, type: 3}
-  buttonClickClip: {fileID: 8300000, guid: 3480ba4544276cc4085e58af120727ec, type: 3}
+  - {fileID: 8300000, guid: b2da899fa6df07340a62aa7ef8cce904, type: 3}
+  - {fileID: 8300000, guid: fe8d52013f1312148bc0ff2f28a8e8d0, type: 3}
+  - {fileID: 8300000, guid: 4871c57d14cc21148ad9f125201a0e1c, type: 3}
+  - {fileID: 8300000, guid: cd56fe6df09656a42b738afc922ff854, type: 3}
+  - {fileID: 8300000, guid: bf6cbb7bec6e4884aa12538db2e66176, type: 3}
+  - {fileID: 8300000, guid: 5659085253d93c14ca40ad1447348e1e, type: 3}
+  buttonClickClip: {fileID: 8300000, guid: c2bd38937e6486b479c1d6ea17cc5769, type: 3}
   sfxClips:
-  - {fileID: 8300000, guid: 99cc9df9810c28449aa0427d768cf9e7, type: 3}
-  - {fileID: 8300000, guid: 2949a353ce746a24e90f16441a0ac69e, type: 3}
-  - {fileID: 8300000, guid: cb11120946d062c4d87346faa187816b, type: 3}
+  - {fileID: 8300000, guid: abfc996f69e80744e91a282c6398045b, type: 3}
+  - {fileID: 8300000, guid: 939064861aee4634cade0c089c91c8eb, type: 3}
+  - {fileID: 8300000, guid: ae464d2eac490b04ba69e6a475c22696, type: 3}
+  - {fileID: 8300000, guid: 34f132683b9f4584b99dceb58b4c6639, type: 3}
 --- !u!4 &1062518523
 Transform:
   m_ObjectHideFlags: 0
