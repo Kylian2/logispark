@@ -9,7 +9,7 @@ public class GifController : MonoBehaviour
 
     private int currentFrame = 0;  
 
-    void Start()
+    void OnEnable()
     {
         if (sprites.Length > 0)
         {

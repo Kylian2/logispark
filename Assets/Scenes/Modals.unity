@@ -1102,6 +1102,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ImpossibleLaunch
       objectReference: {fileID: 0}
+    - target: {fileID: 4013535832647577292, guid: fde772066fc47c742b0ce2aada05af10, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8599857766046168036, guid: fde772066fc47c742b0ce2aada05af10, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

@@ -2724,6 +2724,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 216927243}
     - target: {fileID: 1184026498080398759, guid: 6949b2182183bb048b89ac2ab88068c0, type: 3}
+      propertyPath: warningModal
+      value: 
+      objectReference: {fileID: 1392067130}
+    - target: {fileID: 1184026498080398759, guid: 6949b2182183bb048b89ac2ab88068c0, type: 3}
       propertyPath: modaleVictory
       value: 
       objectReference: {fileID: 89401589}
@@ -2731,6 +2735,10 @@ PrefabInstance:
       propertyPath: restartButton
       value: 
       objectReference: {fileID: 1139267400}
+    - target: {fileID: 1184026498080398759, guid: 6949b2182183bb048b89ac2ab88068c0, type: 3}
+      propertyPath: warningButton
+      value: 
+      objectReference: {fileID: 1392067131}
     - target: {fileID: 1184026498080398759, guid: 6949b2182183bb048b89ac2ab88068c0, type: 3}
       propertyPath: nextLevelButton
       value: 
