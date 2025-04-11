@@ -55,6 +55,8 @@ public class GameManager : MonoBehaviour
         level1.SetAnd(1);
         level1.SetOr(1);
         level1.SetNot(2);
+        level1.SetWire(2);
+        level1.SetScoringSystem(Level.TIME);
 
         level1.treemaker = emplacement =>
         {
@@ -96,6 +98,8 @@ public class GameManager : MonoBehaviour
         level2.SetAnd(2);
         level2.SetOr(2);
         level2.SetNot(3);
+        level2.SetWire(3);
+        level2.SetScoringSystem(Level.MOVE);
 
         level2.treemaker = emplacement =>
         {
@@ -167,8 +171,10 @@ public class GameManager : MonoBehaviour
         Level level3 = new(3);
         level3.Lock();
         level3.SetOr(1);
-        level3.SetNot(1);
+        level3.SetNot(2);
         level3.SetNand(2);
+        level3.SetWire(2);
+        level3.SetScoringSystem(Level.TIME);
 
         level3.treemaker = emplacement =>
         { 
@@ -196,7 +202,7 @@ public class GameManager : MonoBehaviour
             Tree<LogicGate> lvl3spot1 = new Tree<LogicGate>(null);
             lvl3spot1.AddChildren(lvl3source1);
             lvl3spot1.AddChildren(lvl3source2);
-            emplacement["2"].Add(lvl3spot1);
+            emplacement["1"].Add(lvl3spot1);
 
             Tree<LogicGate> lvl3spot2 = new Tree<LogicGate>(null);
             lvl3spot2.AddChildren(lvl3source4);
@@ -246,8 +252,128 @@ public class GameManager : MonoBehaviour
             return lvl3destination;
         };
         levels.Add(level3);
+
+        Level level4 = new(4);
+        level4.Lock();
+        level4.SetOr(1);
+        level4.SetNot(1);
+        level4.SetNand(2);
+        level4.SetWire(3);
+        level4.SetScoringSystem(Level.MOVE);
+
+        level4.treemaker = emplacement =>
+        {
+            Tree<LogicGate> lvl4source = new Tree<LogicGate>(new Source());
+
+            emplacement.Add("1", new List<Tree<LogicGate>>());
+            emplacement.Add("3", new List<Tree<LogicGate>>());
+            emplacement.Add("4", new List<Tree<LogicGate>>());
+            emplacement.Add("5", new List<Tree<LogicGate>>());
+            emplacement.Add("6", new List<Tree<LogicGate>>());
+            emplacement.Add("8", new List<Tree<LogicGate>>());
+            emplacement.Add("9", new List<Tree<LogicGate>>());
+
+            LogicGate lvl4Gate1 = new GateNAND();
+            LogicGate lvl4Gate2 = new GateOR();
+            LogicGate lvl4Gate3 = new GateNOT();
+            LogicGate lvl4Gate4 = new GateAND();
+            LogicGate lvl4Gate5 = new GateAND();
+            LogicGate lvl4Gate6 = new GateNAND();
+            LogicGate lvl4Gate7 = new GateNOT();
+
+            /* Niveau 1 de l'arbre */
+            Tree<LogicGate> lvl4spot1 = new Tree<LogicGate>(null);
+            lvl4spot1.AddChildren(lvl4source);
+            emplacement["1"].Add(lvl4spot1);
+
+            Tree<LogicGate> lvl4spot2 = new Tree<LogicGate>(lvl4Gate1);
+            lvl4spot2.AddChildren(lvl4source);
+            lvl4spot2.AddChildren(lvl4source);
+
+            Tree<LogicGate> lvl4spot3 = new Tree<LogicGate>(null);
+            lvl4spot3.AddChildren(lvl4source);
+            emplacement["1"].Add(lvl4spot3);
+
+            Tree<LogicGate> lvl4spot4 = lvl4spot2;
+
+            Tree<LogicGate> lvl4spot5 = lvl4spot2;
+
+            Tree<LogicGate> lvl4spot6 = new Tree<LogicGate>(null);
+            lvl4spot6.AddChildren(lvl4source);
+            emplacement["3"].Add(lvl4spot6);
+
+            Tree<LogicGate> lvl4spot7 = lvl4spot2;
+
+            Tree<LogicGate> lvl4spot8 = new Tree<LogicGate>(null);
+            lvl4spot8.AddChildren(lvl4source);
+            emplacement["3"].Add(lvl4spot8);
+
+            Tree<LogicGate> lvl4spot9 = new Tree<LogicGate>(null);
+            lvl4spot9.AddChildren(lvl4source);
+            emplacement["3"].Add(lvl4spot9);
+
+            Tree<LogicGate> lvl4spot10 = new Tree<LogicGate>(null);
+            lvl4spot10.AddChildren(lvl4source);
+            emplacement["4"].Add(lvl4spot10);
+
+            /* Niveau 2 de l'arbre */
+            Tree<LogicGate> lvl4spot11 = new Tree<LogicGate>(null);
+            lvl4spot11.AddChildren(lvl4spot1);
+            lvl4spot11.AddChildren(lvl4spot2);
+            emplacement["5"].Add(lvl4spot11);
+
+            Tree<LogicGate> lvl4spot12 = lvl4spot11;
+
+            Tree<LogicGate> lvl4spot13 = new Tree<LogicGate>(null);
+            lvl4spot13.AddChildren(lvl4spot5);
+            lvl4spot13.AddChildren(lvl4spot6);
+            emplacement["6"].Add(lvl4spot13);
+
+            Tree<LogicGate> lvl4spot14 = lvl4spot13;
+
+            Tree<LogicGate> lvl4spot15 = new Tree<LogicGate>(lvl4Gate2);
+            lvl4spot15.AddChildren(lvl4spot9);
+            lvl4spot15.AddChildren(lvl4spot10);
+
+            Tree<LogicGate> lvl4spot16 = new Tree<LogicGate>(null);
+            lvl4spot16.AddChildren(lvl4spot12);
+            lvl4spot16.AddChildren(lvl4spot13);
+            emplacement["8"].Add(lvl4spot16);
+
+            Tree<LogicGate> lvl4spot17 = new Tree<LogicGate>(null);
+            lvl4spot17.AddChildren(lvl4spot15);
+            emplacement["9"].Add(lvl4spot17);
+
+            /* Niveau 3 de l'arbre */
+            Tree<LogicGate> lvl4spot18 = new Tree<LogicGate>(lvl4Gate3);
+            lvl4spot18.AddChildren(lvl4spot16);
+
+            /* Niveau 4 de l'arbre */
+            Tree<LogicGate> lvl4spot19 = new Tree<LogicGate>(lvl4Gate4);
+            lvl4spot19.AddChildren(lvl4spot10);
+            lvl4spot19.AddChildren(lvl4spot18);
+
+            Tree<LogicGate> lvl4spot20 = new Tree<LogicGate>(lvl4Gate5);
+            lvl4spot20.AddChildren(lvl4spot14);
+            lvl4spot20.AddChildren(lvl4spot17);
+
+            /* Niveau 5 de l'arbre */
+            Tree<LogicGate> lvl4spot21 = new Tree<LogicGate>(lvl4Gate6);
+            lvl4spot21.AddChildren(lvl4spot19);
+            lvl4spot21.AddChildren(lvl4spot20);
+
+            /* Niveau 6 de l'arbre */
+            Tree<LogicGate> lvl4spot22 = new Tree<LogicGate>(lvl4Gate7);
+            lvl4spot22.AddChildren(lvl4spot21);
+
+            /* Destination */
+            Tree<LogicGate> lvl4destination = new Tree<LogicGate>(new Wire());
+            lvl4destination.AddChildren(lvl4spot22);
+            return lvl4destination;
+        };
+        levels.Add(level4);
         
-        for(int i = 4; i <= NB_LEVELS; i++)
+        for(int i = 5; i <= NB_LEVELS; i++)
         {
             levels.Add(new Level(i));
         }

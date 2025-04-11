@@ -8,8 +8,8 @@ using UnityEngine.SocialPlatforms.Impl;
 public class Level
 {
 
-    private const int TIME = 1;
-    private const int MOVE = 2;
+    public const int TIME = 1;
+    public const int MOVE = 2;
 
     private int number;
     private bool locked;
@@ -127,5 +127,14 @@ public class Level
     public double GetScore()
     {
         return score;
+    }
+
+    public int GetScoringSystem()
+    {
+        return scoringSystem;
+    }
+    public void SetScoringSystem(int scoringSystem)
+    {
+        this.scoringSystem = scoringSystem;
     }
 }

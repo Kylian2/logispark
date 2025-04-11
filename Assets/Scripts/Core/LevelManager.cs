@@ -48,6 +48,9 @@ public class LevelManager : MonoBehaviour
     public GameObject warningModal;
     public Button warningButton;
 
+    public List<UIGate> gates;
+    public CircuitObject source;
+    public CircuitObject destination;
 
     void Start()
     {
@@ -80,7 +83,12 @@ public class LevelManager : MonoBehaviour
         {
             AddGateToInventory("gate_xor", activeLevel.GetLevel().GetXor());
         }
-
+        
+        if(activeLevel.GetLevel().GetWire() > 0)
+        {
+            AddGateToInventory("wire_gate", activeLevel.GetLevel().GetWire());
+        }
+        
         modalePause.SetActive(false);
         modaleVictory.SetActive(false);
         modaleDefeat.SetActive(false);
@@ -264,6 +272,9 @@ public class LevelManager : MonoBehaviour
                 case 3:
                     SceneManager.LoadScene("Level_3");
                     break;
+                case 4:
+                    SceneManager.LoadScene("Level_4");
+                    break;
                 default:
                     SceneManager.LoadScene("Level_1");
                     break;
@@ -394,14 +405,18 @@ public class LevelManager : MonoBehaviour
 
     private IEnumerator LumosCoroutine()
     {
+        source.Lumos();
+        // Attendre 0.75 seconde
+        yield return new WaitForSeconds(0.75f);
+
         // Appel de la méthode Lumos() sur chaque porte avec délai
-        foreach (ButtonGate buttonGate in buttonGates)
+        foreach (UIGate gate in gates)
         {
-            buttonGate.Lumos();
-            // Attendre 0.5 seconde
+            gate.Lumos();
             yield return new WaitForSeconds(0.75f);
         }
-        
-        yield return new WaitForSeconds(0.75f);
+
+        destination.Lumos();
+        yield return new WaitForSeconds(1.25f);
     }
 }

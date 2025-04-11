@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 using LogiSpark.Models;
 
 namespace LogiSpark.Models
@@ -11,8 +12,7 @@ namespace LogiSpark.Models
             {
                 throw new ArgumentNullException("Signal value cannot be null");
             }
-            output = input1.GetValueOrDefault();
-            return output;
+            return input1.GetValueOrDefault();
         }
     }
 }

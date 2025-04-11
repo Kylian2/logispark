@@ -1,12 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections.Generic;
 
 using System.Linq;
 
 namespace LogiSpark.Models
 {
-    public class ButtonGate : MonoBehaviour
+    public class ButtonGate : UIGate
     {
         public string identifier;
         private bool selected = false;
@@ -77,6 +78,9 @@ namespace LogiSpark.Models
                     case "gate_nand":
                         gate = new GateNAND();
                         break;
+                    case "wire_gate":
+                        gate = new Wire();
+                        break;
                 }
 
                 // On place la porte sur l'arbre
@@ -123,6 +127,8 @@ namespace LogiSpark.Models
 
                 borderObject.SetActive(selected);
             }
+
+            levelManager.activeLevel.RegisterMove();
         }
 
         public void AddYellowBorder(float borderThickness)
@@ -186,9 +192,9 @@ namespace LogiSpark.Models
             image.color = Color.yellow;
         }
 
-        public void Lumos(){
+        public override void Lumos()
+        {
             image.sprite = Resources.Load<Sprite>("Graphics/Gates/Lumos/" + gateType);
         }
-
     }
 }
