@@ -45,6 +45,11 @@ public class LevelManager : MonoBehaviour
     public CircuitObject source;
     public CircuitObject destination;
 
+    public GameObject[] modalsTutorial;
+    public Button[] modalButtons;
+    public GameObject warningModal;
+    public Button warningButton;
+
     void Start()
     {
         Level level = GameManager.instance.getCurrentLevel();
@@ -384,7 +389,11 @@ public class LevelManager : MonoBehaviour
 
             modaleVictory.SetActive(true);
             GameManager.instance.RegisterScore(activeLevel.GetLevel().getNumber(), score);
-            GameManager.instance.UnlockLevel(activeLevel.GetLevel().getNumber()+1);
+
+            if(activeLevel.GetLevel().getNumber()+1 <= 4)
+            {
+                GameManager.instance.UnlockLevel(activeLevel.GetLevel().getNumber()+1);
+            }
         }else{
             AudioManager.Instance.PauseMusic();
             AudioManager.Instance.PlaySFX(0);
