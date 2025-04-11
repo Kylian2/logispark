@@ -41,8 +41,6 @@ public class LevelManager : MonoBehaviour
     public Button playAgain;
     public Button HomeButton2;
 
-    public List<ButtonGate> buttonGates;
-
     public GameObject[] modalsTutorial;
     public Button[] modalButtons;
     public GameObject warningModal;
