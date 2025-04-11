@@ -397,8 +397,6 @@ public class LevelManager : MonoBehaviour
         }else{
             AudioManager.Instance.PauseMusic();
             AudioManager.Instance.PlaySFX(0);
-
-            Debug.Log("Défaite");
             modaleDefeat.SetActive(true);
         }
         

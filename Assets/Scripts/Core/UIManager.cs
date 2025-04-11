@@ -35,15 +35,12 @@ public class UIManager : MonoBehaviour
     }
 
     public void displayLevels() {
-        Debug.Log(SceneManager.GetActiveScene().name);
         if(SceneManager.GetActiveScene().name != "LevelSelect") {
             return;
         }
-        Debug.Log("Display levels");
         buttonContainer = FindObjectOfType<GridLayoutGroup>().transform;
         for(int i = 0; i < GameManager.NB_LEVELS; i++) {
             Button button = Instantiate(levelButton, buttonContainer);
-            Debug.Log(i);
             // Créer une copie locale de i qui sera capturée par valeur
             int levelNumber = i + 1;
             

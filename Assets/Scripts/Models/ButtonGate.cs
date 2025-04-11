@@ -39,9 +39,7 @@ namespace LogiSpark.Models
         
         private void OnButtonClick()
         {
-            Debug.Log("Button clicked: " + identifier);
             string levelManagerGateType = levelManager.activeLevel.GetGateType();
-            Debug.Log("LevelManager gate type: " + levelManagerGateType);
             if(acceptableGates.Contains(levelManagerGateType))
             {
                 // Si on veut replacer la même porte, on ne fait rien
